@@ -79,9 +79,9 @@ public class EfetuarSorteio extends Thread {
 		sai_ValorDiferencaMaxMin = "";
 		sai_HashResultado = "";
 
-		Resultado = "Secretaria da Fazenda do Estado de GoiÃ¡s\r\n" +
+		Resultado = "Secretaria da Fazenda do Estado de Goiás\r\n" +
 				"====================================================\r\n\r\n" +
-				"VersÃ£o do Programa: " + Sorteio.Versao + "\r\n\r\n" +
+				"Versão do Programa: " + Sorteio.Versao + "\r\n\r\n" +
 				"Sorteio de Bilhetes\r\n" +
 				"-------------------\r\n" +
 				"Loteria Federal ExtraÃ§Ã£o nÂº " + en_Extracao + " de " + en_DataExtracao + "\r\n" +
@@ -93,9 +93,9 @@ public class EfetuarSorteio extends Thread {
 				"Sorteio nÂº " + en_SorteioNumero + "\r\n";
 
 		Resultado += "Data do Sorteio:         " + en_DataSorteio + "\r\n" +
-				"Data no DiÃ¡rio Oficial:  " + en_DataDiarioOficial + "\r\n";
-		Resultado += String.format("NÃºmero de Bilhetes:     %11s\r\n", en_TotalBilhetes);
-		Resultado += String.format("NÃºmero de PrÃªmios:      %11s\r\n", en_TotalPremios);
+				"Data no Diário Oficial:  " + en_DataDiarioOficial + "\r\n";
+		Resultado += String.format("Número de Bilhetes:     %11s\r\n", en_TotalBilhetes);
+		Resultado += String.format("Número de Premios:      %11s\r\n", en_TotalPremios);
 
 		CharSequence target = ".";
 		CharSequence replacement = "";
@@ -159,9 +159,9 @@ public class EfetuarSorteio extends Thread {
 
 		Vezes = 1;
 
-		Resultado += "\r\nRelaÃ§Ã£o dos Bilhetes Premiados:\r\n" +
+		Resultado += "\r\nRelação dos Bilhetes Premiados:\r\n" +
 				"-------------------------------\r\n" +
-				"  IteraÃ§Ã£o      Premio     Bilhete  ObservaÃ§Ã£o\r\n" +
+				"  Iteração      Premio     Bilhete  Observação\r\n" +
 				"==========  ==========  ==========  =====================================\r\n";
 
 		String encoding = "ISO-8859-1";
@@ -204,6 +204,8 @@ public class EfetuarSorteio extends Thread {
 		Random rg = new Random();
 		long sd = semente.hashCode();
 		rg.setSeed(sd);
+		
+		
 		for (Premios = 1; Premios <= NumPremios; Vezes++) {
 			if (PararSorteio) {
 				MsgErro = "A operaÃ§Ã£o foi cancelada pelo operador!";
