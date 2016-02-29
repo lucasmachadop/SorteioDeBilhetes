@@ -10,6 +10,8 @@ import java.text.NumberFormat;
 import java.util.Random;
 import java.util.SortedMap;
 
+import model.EfetuarSorteio;
+
 public class RefatoraEfetuarSorteio {
 	//RefatorarEfetuarSorteio é nome temporario, iremos refatorar o codigo aqui e depois refatorar essa classe e criar os testes em cima dela!
 	public boolean verificaHash(int numPremios) {
@@ -44,26 +46,7 @@ public class RefatoraEfetuarSorteio {
 
 	}
 
-	public OutputStreamWriter geraArquivo(String nomeArquivo, String encoding)
-			throws UnsupportedEncodingException, FileNotFoundException {
-		if (nomeArquivo.length() == 0) {
-			try {
-				File tempFile = File.createTempFile("meu", ".tmp");
-				nomeArquivo = tempFile.getAbsolutePath();
-				return new OutputStreamWriter(new FileOutputStream(tempFile),
-						encoding);
-			} catch (IOException e) {
-				EfetuarSorteio.MsgErro = "NÃ£o conseguiu criar " + nomeArquivo
-						+ ". Deu erro: " + e.getMessage();
-				EfetuarSorteio.EmExecucao = false;
-				return null;
-			}
-		} else {
-			return new OutputStreamWriter(new FileOutputStream(nomeArquivo),
-					encoding);
-		}
-
-	}
+	
 
 	public void imprimeResultado(OutputStreamWriter outP, String resultado) {
 		PrintWriter out = new PrintWriter(new BufferedWriter(outP));
@@ -76,7 +59,7 @@ public class RefatoraEfetuarSorteio {
 		String resultado = "";
 		for (EfetuarSorteio.Premios = 1; EfetuarSorteio.Premios <= numPremios; EfetuarSorteio.Vezes++) {
 			if (EfetuarSorteio.PararSorteio) {
-				EfetuarSorteio.MsgErro = "A operaÃ§Ã£o foi cancelada pelo operador!";
+				EfetuarSorteio.MsgErro = "A operação foi cancelada pelo operador!";
 				EfetuarSorteio.EmExecucao = false;
 				return;
 			}
@@ -92,7 +75,7 @@ public class RefatoraEfetuarSorteio {
 							mf.format(EfetuarSorteio.Vezes),
 							"-",
 							mf.format(ri),
-							"Bilhete jÃ¡ foi sorteado na iteraÃ§Ã£o "
+							"Bilhete já foi sorteado na iteração "
 									+ mf.format(bilhetesSorteados.get(ri)));
 					out.print(resultado);
 					continue;
@@ -105,7 +88,7 @@ public class RefatoraEfetuarSorteio {
 							mf.format(EfetuarSorteio.Vezes),
 							"-",
 							mf.format(ri),
-							"Bilhete jÃ¡ foi sorteado na iteraÃ§Ã£o "
+							"Bilhete já foi sorteado na iteração "
 									+ mf.format(valores[ri]));
 					out.print(resultado);
 					continue;
