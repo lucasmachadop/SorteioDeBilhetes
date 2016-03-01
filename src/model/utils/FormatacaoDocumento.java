@@ -17,35 +17,35 @@ public class FormatacaoDocumento {
 				+ "Sorteio de Bilhetes\r\n"
 				+ "-------------------\r\n"
 				+ "Loteria Federal ExtraÃ§Ã£o nÂº "
-				+ EfetuarSorteio.en_Extracao
+				+ EfetuarSorteio.extracao
 				+ " de "
-				+ EfetuarSorteio.en_DataExtracao
+				+ EfetuarSorteio.dataExtracao
 				+ "\r\n"
 				+ "1Âº Premio: "
-				+ EfetuarSorteio.en_Premio1
+				+ EfetuarSorteio.premio1
 				+ "\r\n"
 				+ "2Âº Premio: "
-				+ EfetuarSorteio.en_Premio2
+				+ EfetuarSorteio.premio2
 				+ "\r\n"
 				+ "3Âº Premio: "
-				+ EfetuarSorteio.en_Premio3
+				+ EfetuarSorteio.premio3
 				+ "\r\n"
 				+ "4Âº Premio: "
-				+ EfetuarSorteio.en_Premio4
+				+ EfetuarSorteio.premio4
 				+ "\r\n"
 				+ "5Âº Premio: "
-				+ EfetuarSorteio.en_Premio5
+				+ EfetuarSorteio.premio5
 				+ "\r\n\r\n"
 				+ "Sorteio nÂº "
-				+ EfetuarSorteio.en_SorteioNumero
+				+ EfetuarSorteio.numDoSorteio
 				+ "\r\n";
 
-		cabecalho += "Data do Sorteio:         " + EfetuarSorteio.en_DataSorteio + "\r\n"
-				+ "Data no Diário Oficial:  " + EfetuarSorteio.en_DataDiarioOficial + "\r\n";
+		cabecalho += "Data do Sorteio:         " + EfetuarSorteio.dataSorteio + "\r\n"
+				+ "Data no Diário Oficial:  " + EfetuarSorteio.dataDiarioOficial + "\r\n";
 		cabecalho += String.format("Número de Bilhetes:     %11s\r\n",
-				EfetuarSorteio.en_TotalBilhetes);
+				EfetuarSorteio.totalDeBilhetes);
 		cabecalho += String.format("Número de Premios:      %11s\r\n",
-				EfetuarSorteio.en_TotalPremios);
+				EfetuarSorteio.totalDePremios);
 		cabecalho += "\r\nRelação dos Bilhetes Premiados:\r\n"
 				+ "-------------------------------\r\n"
 				+ "  Iteração      Premio     Bilhete  Observação\r\n"
@@ -56,8 +56,8 @@ public class FormatacaoDocumento {
 	public static String montaResultado(int vezes, int premios,int ri){
 		String resultado = "";
 		resultado = String.format("%10s  %10s %11s  %s\r\n",
-				mf.format(EfetuarSorteio.Vezes),
-				mf.format(EfetuarSorteio.Premios), mf.format(ri), "");
+				mf.format(EfetuarSorteio.vezes),
+				mf.format(EfetuarSorteio.premios), mf.format(ri), "");
 		return resultado;
 		}
 	
@@ -65,7 +65,7 @@ public class FormatacaoDocumento {
 		
 		String Resultado = "\r\nAVALIAÇÃO DO SORTEIO\r\n"
 				+ "====================\r\n" + "Número de Faixas de Bilhetes: "
-				+ EfetuarSorteio.sai_ValorNumeroFaixas + "\r\n";
+				+ EfetuarSorteio.numDeFaixas + "\r\n";
 
 		// Obter os valores Máximo e Mínimo de Prêmios por faixa de valores de
 		// bilhetes.
@@ -80,20 +80,20 @@ public class FormatacaoDocumento {
 	 String Resultado = "\r\nEstatisticas do Número de Prêmios Por Faixa de Bilhetes\r\n"
 			+ "=======================================================\r\n";
 	Resultado += String.format("     Valor Médio Calculado:      %10s\r\n",
-			EfetuarSorteio.sai_ValorEsperado);
+			EfetuarSorteio.valorEsperado);
 	Resultado += String.format("     Valor Máximo Obtido:        %10s\r\n",
-			EfetuarSorteio.sai_ValorMaximo);
+			EfetuarSorteio.valorMaximo);
 	Resultado += String.format("     Valor Mínimo Obtido:        %10s\r\n",
-			EfetuarSorteio.sai_ValorMinimo);
+			EfetuarSorteio.valorMinimo);
 	Resultado += String.format(
 			"     Diferenças: Máximo - Mínimo: %10s\r\n",
-			EfetuarSorteio.sai_ValorDiferencaMaxMin);
+			EfetuarSorteio.diferencaValoresMaxMin);
 	Resultado += String.format("     Valor Médio Obtido:         %10s\r\n",
-			EfetuarSorteio.sai_ValorMedio);
+			EfetuarSorteio.valorMedio);
 	Resultado += String.format("     Desvio Padrão:              %10s\r\n",
-			EfetuarSorteio.sai_ValorDesvioPadrao);
+			EfetuarSorteio.valorDesvioPadrao);
 	Resultado += String.format("     Número de Iterações:        %10s\r\n",
-			FormatacaoDocumento.mf.format(EfetuarSorteio.Vezes - 1));
+			FormatacaoDocumento.mf.format(EfetuarSorteio.vezes - 1));
 	Resultado += "-----------------------------------------------------------------\r\n";
 	return Resultado;
 	}

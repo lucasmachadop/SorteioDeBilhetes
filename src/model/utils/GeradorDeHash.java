@@ -26,7 +26,7 @@ public class GeradorDeHash {
 				try {
 					
 					while (dis.read(buf, 0, 10240) != -1) {
-						if (EfetuarSorteio.PararSorteio) {
+						if (EfetuarSorteio.sorteioParado) {
 							dis.close();
 							
 							return "1";

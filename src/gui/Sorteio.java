@@ -346,7 +346,7 @@ public class Sorteio extends JFrame {
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (EfetuarSorteio.isRunning()) {
-					EfetuarSorteio.Parar();
+					EfetuarSorteio.pararSorteio();
 					InicializarCampos();
 					InicializarResultados();
 				} else {
@@ -854,15 +854,15 @@ public class Sorteio extends JFrame {
 		if (EfetuarSorteio.isRunning()) {
 			long TempoAgora =(new Date()).getTime();
 			long delta = (TempoAgora - TempoInicial) / 1000;
-			lblValorNumeroFaixas.setText(EfetuarSorteio.sai_ValorNumeroFaixas);
-			lblValorEsperado.setText(EfetuarSorteio.sai_ValorEsperado);
-			lblNumeroIteracoes.setText(FormatoNumero.format(EfetuarSorteio.Vezes - 1));
-			lblNumeroPremios.setText(FormatoNumero.format(EfetuarSorteio.Premios - 1));
+			lblValorNumeroFaixas.setText(EfetuarSorteio.numDeFaixas);
+			lblValorEsperado.setText(EfetuarSorteio.valorEsperado);
+			lblNumeroIteracoes.setText(FormatoNumero.format(EfetuarSorteio.vezes - 1));
+			lblNumeroPremios.setText(FormatoNumero.format(EfetuarSorteio.premios - 1));
 			lblValorTempoTranscorrido.setText(FormatoNumero.format(delta));
 			if (DeltaAnterior != delta) {
 				int val;
 				if (delta > 0)
-					val = EfetuarSorteio.Vezes / (int)delta;
+					val = EfetuarSorteio.vezes / (int)delta;
 				else
 					val = 0;
 				lblValorIteracoesPorSegundo.setText(FormatoNumero.format(val));
@@ -872,19 +872,19 @@ public class Sorteio extends JFrame {
 			long TempoFinal =(new Date()).getTime();
 			long delta = (TempoFinal - TempoInicial) / 1000;
 			TimerSorteio.stop();
-			lblValorDesvioPadrao.setText(EfetuarSorteio.sai_ValorDesvioPadrao);
-			lblValorEsperado.setText(EfetuarSorteio.sai_ValorEsperado);
-			lblValorMedio.setText(EfetuarSorteio.sai_ValorMedio);
-			lblValorMaximo.setText(EfetuarSorteio.sai_ValorMaximo);
-			lblValorMinimo.setText(EfetuarSorteio.sai_ValorMinimo);
-			lblValorDiferencaMaxMin.setText(EfetuarSorteio.sai_ValorDiferencaMaxMin);
-			lblNumeroIteracoes.setText(FormatoNumero.format(EfetuarSorteio.Vezes - 1));
-			lblNumeroPremios.setText(FormatoNumero.format(EfetuarSorteio.Premios - 1));
+			lblValorDesvioPadrao.setText(EfetuarSorteio.valorDesvioPadrao);
+			lblValorEsperado.setText(EfetuarSorteio.valorEsperado);
+			lblValorMedio.setText(EfetuarSorteio.valorMedio);
+			lblValorMaximo.setText(EfetuarSorteio.valorMaximo);
+			lblValorMinimo.setText(EfetuarSorteio.valorMinimo);
+			lblValorDiferencaMaxMin.setText(EfetuarSorteio.diferencaValoresMaxMin);
+			lblNumeroIteracoes.setText(FormatoNumero.format(EfetuarSorteio.vezes - 1));
+			lblNumeroPremios.setText(FormatoNumero.format(EfetuarSorteio.premios - 1));
 			if (!AferindoPrograma)
-				lblHashResultado.setText(EfetuarSorteio.sai_HashResultado);
+				lblHashResultado.setText(EfetuarSorteio.hashResultado);
 			lblValorTempoTranscorrido.setText(FormatoNumero.format(delta));
 			boolean ContinuaExecucao = false;
-			if (EfetuarSorteio.MsgErro.length() > 0) {
+			if (EfetuarSorteio.msgDeErro.length() > 0) {
 				String msg, titulo;
 				if (AferindoPrograma) {
 					msg = "da aferição: ";
@@ -893,12 +893,12 @@ public class Sorteio extends JFrame {
 					msg = "do sorteio: ";
 					titulo = "Executando o Sorteio";
 				}
-				if (EfetuarSorteio.MsgErro.contains("cancelada"))
-					JOptionPane.showMessageDialog(null, EfetuarSorteio.MsgErro, titulo, JOptionPane.WARNING_MESSAGE);
+				if (EfetuarSorteio.msgDeErro.contains("cancelada"))
+					JOptionPane.showMessageDialog(null, EfetuarSorteio.msgDeErro, titulo, JOptionPane.WARNING_MESSAGE);
 				else
-					JOptionPane.showMessageDialog(null, "Falhou a execução " + msg + EfetuarSorteio.MsgErro, titulo, JOptionPane.ERROR_MESSAGE);
-				if (EfetuarSorteio.Nome.equals("Aferir")) {
-					if (EfetuarSorteio.MsgErro.contains("cancelada")) {
+					JOptionPane.showMessageDialog(null, "Falhou a execução " + msg + EfetuarSorteio.msgDeErro, titulo, JOptionPane.ERROR_MESSAGE);
+				if (EfetuarSorteio.nomeSorteio.equals("Aferir")) {
+					if (EfetuarSorteio.msgDeErro.contains("cancelada")) {
 						lblProgramaAferido.setForeground(Color.RED);
 						lblProgramaAferido.setText("Cancelada a aferição!");
 					} else {
@@ -907,7 +907,7 @@ public class Sorteio extends JFrame {
 					}
 				}
 			} else {
-				if (EfetuarSorteio.Nome.equals("Aferir")) {
+				if (EfetuarSorteio.nomeSorteio.equals("Aferir")) {
 					lblProgramaAferido.setForeground(Color.BLUE);
 					lblProgramaAferido.setText("Programa Aferido");
 				} else {
