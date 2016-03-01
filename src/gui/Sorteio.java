@@ -36,27 +36,27 @@ import javax.swing.JCheckBox;
 import model.EfetuarSorteio;
 
 public class Sorteio extends JFrame {
-	public static String Versao = "0.1";
+	public static String versao = "0.1";
 
-	public static int NumeroFaixas = 100;
-	public static boolean AferindoPrograma = false;
+	public static int numDeFaixas = 100;
+	public static boolean programaAferido = false;
 
 	// Valores da Extração n° 04957 de 28/03/2015 da Loteria Federal
 
 
-	private String afr_Premio1 = "63.487";
-	private String afr_Premio2 = "65.079";
-	private String afr_Premio3 = "43.554";
-	private String afr_Premio4 = "91.016";
-	private String afr_Premio5 = "76.226";
-	private String afr_DataExtracao = "28/03/2015";
-	private String afr_Extracao = "04957";
+	private String afrPremio1 = "63.487";
+	private String afrPremio2 = "65.079";
+	private String afrPremio3 = "43.554";
+	private String afrPremio4 = "91.016";
+	private String afrPremio5 = "76.226";
+	private String afrDataExtracao = "28/03/2015";
+	private String afrExtracao = "04957";
 	// Valores utilizados para aferição deste programa
-	private String afr_Sorteio = "00001";
-	private String afr_DataSorteio = "29/03/2015";
-	private String afr_DataDiarioOficial = "30/03/2015";
-	private String afr_Bilhetes = "10.000.000";
-	private String afr_Premios = "1.000.000";
+	private String afrSorteio = "00001";
+	private String afrDataSorteio = "29/03/2015";
+	private String afrDataDiarioOficial = "30/03/2015";
+	private String afrBilhetes = "10.000.000";
+	private String afrPremios = "1.000.000";
 
 	static Sorteio frame;
 	private JFormattedTextField textExtracao;
@@ -105,13 +105,13 @@ public class Sorteio extends JFrame {
 	private JCheckBox chckbxUmaLinha;
 	private JLabel lblArquivoImportacaoExtracoes;
 
-	private Timer TimerSorteio;
-	private NumberFormat FormatoNumero = NumberFormat.getNumberInstance(Locale.GERMAN);
-	private long TempoInicial, DeltaAnterior = 0;
-	private String NomeArquivoSAIDA;
-	private ArrayList<String> ArquivosTXT = new ArrayList<String>();
+	private Timer timerSorteio;
+	private NumberFormat formatoNumero = NumberFormat.getNumberInstance(Locale.GERMAN);
+	private long tempoInicial, deltaAnterior = 0;
+	private String nomeArquivoSaida;
+	private ArrayList<String> arquivosTxt = new ArrayList<String>();
 
-	static int ProximaExtracao;
+	static int proximaExtracao;
 
 	/**
 	 * Create the panel.
@@ -122,8 +122,8 @@ public class Sorteio extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent arg0) {
-				InicializarCampos();
-				InicializarResultados();
+				inicializarCampos();
+				inicializarResultados();
 				lblProgramaAferido.setText("");
 			}
 		});
@@ -303,7 +303,7 @@ public class Sorteio extends JFrame {
 		lblNewLabel_5.setBounds(10, 156, 140, 20);
 		lblNewLabel_5.setHorizontalAlignment(SwingConstants.RIGHT);
 
-		textTotalBilhetes = new JFormattedTextField(FormatoNumero);
+		textTotalBilhetes = new JFormattedTextField(formatoNumero);
 		textTotalBilhetes.setBounds(151, 156, 99, 20);
 		textTotalBilhetes.setColumns(10);
 
@@ -311,7 +311,7 @@ public class Sorteio extends JFrame {
 		lblNewLabel_6.setBounds(10, 188, 140, 20);
 		lblNewLabel_6.setHorizontalAlignment(SwingConstants.RIGHT);
 
-		textTotalPremios = new JFormattedTextField(FormatoNumero);
+		textTotalPremios = new JFormattedTextField(formatoNumero);
 		textTotalPremios.setBounds(151, 188, 99, 20);
 		textTotalPremios.setColumns(10);
 
@@ -347,8 +347,8 @@ public class Sorteio extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if (EfetuarSorteio.isRunning()) {
 					EfetuarSorteio.pararSorteio();
-					InicializarCampos();
-					InicializarResultados();
+					inicializarCampos();
+					inicializarResultados();
 				} else {
 					// Programa está parado. Encerrar o programa.
 					frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
@@ -379,7 +379,7 @@ public class Sorteio extends JFrame {
 					JOptionPane.showMessageDialog(null, "O programa já está efetuando o sorteio. Aguarde!", "Sorteio", JOptionPane.WARNING_MESSAGE);
 					return;
 				}
-				EfetuarUmSorteio();
+				efetuarUmSorteio();
 			}
 		});
 
@@ -501,13 +501,13 @@ public class Sorteio extends JFrame {
 		lblValorIteracoesPorSegundo.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblValorIteracoesPorSegundo.setForeground(Color.BLUE);
 
-		TimerSorteio = new Timer(100, (ActionListener) TimerSorteio);
-		TimerSorteio.addActionListener(new ActionListener() {
+		timerSorteio = new Timer(100, (ActionListener) timerSorteio);
+		timerSorteio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TimerSorteio_Timer();
+				iniciarTimer();
 			}
 		});
-		TimerSorteio.stop();
+		timerSorteio.stop();
 
 		btnAferir = new JButton("Aferir");
 		btnAferir.setBounds(72, 522, 75, 26);
@@ -518,20 +518,20 @@ public class Sorteio extends JFrame {
 					JOptionPane.showMessageDialog(null, "O programa já está efetuando a aferição. Aguarde!", "aferição do Programa", JOptionPane.WARNING_MESSAGE);
 					return;
 				}
-				AferindoPrograma = true;
-				InicializarResultados();
-				CarregarValoresPadrao();
-				HabilitarCampos(false);
+				programaAferido = true;
+				inicializarResultados();
+				carregarValoresPadrao();
+				habilitarCampos(false);
 				lblProgramaAferido.setText("");
 				if (!VerificarErrosCampos()) {
-					TempoInicial =(new Date()).getTime();
+					tempoInicial =(new Date()).getTime();
 					new EfetuarSorteio("Aferir", textExtracao.getText(), textDataExtracao.getText(),
 							textPremio1.getText(), textPremio2.getText(), textPremio3.getText(),
 							textPremio4.getText(), textPremio5.getText(),
 							textSorteioNumero.getText(), textDataSorteio.getText(),
 							textDataDiarioOficial.getText(), textTotalBilhetes.getText(),
 							textTotalPremios.getText(), "").start();
-					TimerSorteio.start();
+					timerSorteio.start();
 				}
 			}
 		});
@@ -545,8 +545,8 @@ public class Sorteio extends JFrame {
 		btnApagar.setBounds(158, 522, 75, 26);
 		btnApagar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				InicializarCampos();
-				InicializarResultados();
+				inicializarCampos();
+				inicializarResultados();
 			}
 		});
 		getContentPane().setLayout(null);
@@ -634,12 +634,12 @@ public class Sorteio extends JFrame {
 		getContentPane().add(btnCancelar);
 		getContentPane().add(lblProgramaAferido);
 
-		JLabel lblVersao = new JLabel("Versão do Programa: " + Versao);
+		JLabel lblVersao = new JLabel("Versão do Programa: " + versao);
 		lblVersao.setToolTipText("Clique aqui para obter mais Informações.");
 		lblVersao.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				JOptionPane.showMessageDialog(null, "Versão do Programa de Sorteio: " + Versao + "\r\n\r\n" +
+				JOptionPane.showMessageDialog(null, "Versão do Programa de Sorteio: " + versao + "\r\n\r\n" +
 						"MÃ¡quina Virtual JAVA\r\n" +
 						"Versão: " + System.getProperty("java.version") + " - " +
 						System.getProperty("java.vendor") + "\r\n" +
@@ -669,18 +669,18 @@ public class Sorteio extends JFrame {
 
 
 
-	protected void EfetuarUmSorteio() {
-		AferindoPrograma = false;
-		InicializarResultados();
+	protected void efetuarUmSorteio() {
+		programaAferido = false;
+		inicializarResultados();
 		if (!VerificarErrosCampos()) {
-			String NomeArquivoTXT = "";
+			String nomeArquivoTxt = "";
 			String extensao = "";
 			String[] vals= textDataSorteio.getText().split("/");
-			Date Agora = new Date();
-			SimpleDateFormat dt = new SimpleDateFormat("ddMMyyyy-HHmmss");
-			String data = dt.format(Agora);
+			Date dataLocal = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy-HHmmss");
+			String data = sdf.format(dataLocal);
 //			if ((TipoExtracao.TipoExtracaoEscolhida != TipoExtracao.ValoresTipoExtracao.IMPORTADA) || (ProximaExtracao == 0)) {
-			if ((ProximaExtracao == 0)) {
+			if ((proximaExtracao == 0)) {
 				JFileChooser fc = new JFileChooser();
 				FileFilter ff = fc.getFileFilter();		// Salvando o filtro Padrão.
 				fc.setAcceptAllFileFilterUsed(false);	// Apagando todos os filtros.
@@ -700,42 +700,42 @@ public class Sorteio extends JFrame {
 				if (ret != JFileChooser.APPROVE_OPTION) {
 					return;
 				}
-				NomeArquivoSAIDA = fc.getSelectedFile().getAbsolutePath();
-				if (!NomeArquivoSAIDA.substring(NomeArquivoSAIDA.length() - 4).toLowerCase().contains("." + extensao)) {
+				nomeArquivoSaida = fc.getSelectedFile().getAbsolutePath();
+				if (!nomeArquivoSaida.substring(nomeArquivoSaida.length() - 4).toLowerCase().contains("." + extensao)) {
 					// O nome do arquivo não contém a extensÃ£o correta.
-					NomeArquivoSAIDA += "." + extensao;	// Colocar a extensÃ£o no nome do arquivo.
+					nomeArquivoSaida += "." + extensao;	// Colocar a extensÃ£o no nome do arquivo.
 				}
-				ArquivosTXT.clear();
+				arquivosTxt.clear();
 			}
-			NomeArquivoTXT = NomeArquivoSAIDA;
-			TempoInicial =(new Date()).getTime();
-			HabilitarCampos(false);
+			nomeArquivoTxt = nomeArquivoSaida;
+			tempoInicial =(new Date()).getTime();
+			habilitarCampos(false);
 			new EfetuarSorteio("Sortear", textExtracao.getText(), textDataExtracao.getText(),
 					textPremio1.getText(), textPremio2.getText(), textPremio3.getText(),
 					textPremio4.getText(), textPremio5.getText(),
 					textSorteioNumero.getText(), textDataSorteio.getText(),
 					textDataDiarioOficial.getText(), textTotalBilhetes.getText(),
-					textTotalPremios.getText(), NomeArquivoTXT).start();
-			TimerSorteio.start();
+					textTotalPremios.getText(), nomeArquivoTxt).start();
+			timerSorteio.start();
 		}
 	}
 
 	protected boolean VerificarErrosCampos() {
-		boolean DeuErro = false;
+		boolean erroEncontrado = false;
 		CharSequence target = ".";
 		CharSequence replacement = "";
-		int NumBilhetes = 0;
-		int NumPremios = 0;
+		int numBilhetes = 0;
+		int numPremios = 0;
 
 		if (textExtracao.getText().contains(" ") || textExtracao.getText().equals("00000")) {
 			lblErroExtracao.setVisible(true);
-			DeuErro = true;
+			erroEncontrado = true;
 		} else {
 			lblErroExtracao.setVisible(false);
 		}
 		if (textDataExtracao.getText().contains(" ") || textDataExtracao.getText().equals("00/00/0000")) {
 			lblErroDataExtracao.setVisible(true);
-			DeuErro = true;
+			erroEncontrado = true;
 		} else {
 			lblErroDataExtracao.setVisible(false);
 		}
@@ -747,47 +747,47 @@ public class Sorteio extends JFrame {
 			dt = sdf.parse(textDataExtracao.getText());
 		} catch (ParseException e) {
 			lblErroDataExtracao.setVisible(true);
-			DeuErro = true;
+			erroEncontrado = true;
 		}
 		if (textPremio1.getText().contains(" ") || textPremio1.getText().equals("00.000")) {
 			lblErroPremio1.setVisible(true);
-			DeuErro = true;
+			erroEncontrado = true;
 		} else {
 			lblErroPremio1.setVisible(false);
 		}
 		if (textPremio2.getText().contains(" ") || textPremio2.getText().equals("00.000")) {
 			lblErroPremio2.setVisible(true);
-			DeuErro = true;
+			erroEncontrado = true;
 		} else {
 			lblErroPremio2.setVisible(false);
 		}
 		if (textPremio3.getText().contains(" ") || textPremio3.getText().equals("00.000")) {
 			lblErroPremio3.setVisible(true);
-			DeuErro = true;
+			erroEncontrado = true;
 		} else {
 			lblErroPremio3.setVisible(false);
 		}
 		if (textPremio4.getText().contains(" ") || textPremio4.getText().equals("00.000")) {
 			lblErroPremio4.setVisible(true);
-			DeuErro = true;
+			erroEncontrado = true;
 		} else {
 			lblErroPremio4.setVisible(false);
 		}
 		if (textPremio5.getText().contains(" ") || textPremio5.getText().equals("00.000")) {
 			lblErroPremio5.setVisible(true);
-			DeuErro = true;
+			erroEncontrado = true;
 		} else {
 			lblErroPremio5.setVisible(false);
 		}
-		if (textSorteioNumero.getText().contains(" ") || (!AferindoPrograma && textSorteioNumero.getText().equals("00000"))) {
+		if (textSorteioNumero.getText().contains(" ") || (!programaAferido && textSorteioNumero.getText().equals("00000"))) {
 			lblErroSorteioNumero.setVisible(true);
-			DeuErro = true;
+			erroEncontrado = true;
 		} else {
 			lblErroSorteioNumero.setVisible(false);
 		}
 		if (textDataSorteio.getText().contains(" ") || textDataSorteio.getText().equals("00/00/0000")) {
 			lblErroDataSorteio.setVisible(true);
-			DeuErro = true;
+			erroEncontrado = true;
 		} else {
 			lblErroDataSorteio.setVisible(false);
 		}
@@ -795,11 +795,11 @@ public class Sorteio extends JFrame {
 			dt = sdf.parse(textDataSorteio.getText());
 		} catch (ParseException e) {
 			lblErroDataSorteio.setVisible(true);
-			DeuErro = true;
+			erroEncontrado = true;
 		}
 		if (textDataDiarioOficial.getText().contains(" ") || textDataDiarioOficial.getText().equals("00/00/0000")) {
 			lblErroDataDiarioOficial.setVisible(true);
-			DeuErro = true;
+			erroEncontrado = true;
 		} else {
 			lblErroDataDiarioOficial.setVisible(false);
 		}
@@ -807,86 +807,86 @@ public class Sorteio extends JFrame {
 			dt = sdf.parse(textDataDiarioOficial.getText());
 		} catch (ParseException e) {
 			lblErroDataDiarioOficial.setVisible(true);
-			DeuErro = true;
+			erroEncontrado = true;
 		}
 		if (textTotalBilhetes.getText().length() == 0) {
 			lblErroTotalBilhetes.setVisible(true);
-			DeuErro = true;
+			erroEncontrado = true;
 		} else {
-			String StrBilhetes = textTotalBilhetes.getText().replace(target , replacement);
-			NumBilhetes = Integer.parseInt(StrBilhetes);
-			if (NumBilhetes == 0) {
+			String strBilhetes = textTotalBilhetes.getText().replace(target , replacement);
+			numBilhetes = Integer.parseInt(strBilhetes);
+			if (numBilhetes == 0) {
 				lblErroTotalBilhetes.setVisible(true);
-				DeuErro = true;
+				erroEncontrado = true;
 			} else {
 				lblErroTotalBilhetes.setVisible(false);
 			}
 		}
 		if (textTotalPremios.getText().length() == 0) {
 			lblErroTotalPremios.setVisible(true);
-			DeuErro = true;
+			erroEncontrado = true;
 		} else {
-			String StrPremios = textTotalPremios.getText().replace(target , replacement);
-			NumPremios = Integer.parseInt(StrPremios);
-			if (NumPremios == 0) {
+			String strPremios = textTotalPremios.getText().replace(target , replacement);
+			numPremios = Integer.parseInt(strPremios);
+			if (numPremios == 0) {
 				lblErroTotalPremios.setVisible(true);
-				DeuErro = true;
+				erroEncontrado = true;
 			} else {
 				lblErroTotalPremios.setVisible(false);
 			}
 		}
-		if (!DeuErro && (NumBilhetes < NumPremios)) {
+		if (!erroEncontrado && (numBilhetes < numPremios)) {
 			lblErroTotalBilhetes.setVisible(true);
 			lblErroTotalPremios.setVisible(true);
-			DeuErro = true;
+			erroEncontrado = true;
 			JOptionPane.showMessageDialog(null, "O número de bilhetes deve ser superior ao número de prêmios!\r\nCorrija estes campos.", "Sorteio", JOptionPane.WARNING_MESSAGE);
-		} else if (!DeuErro && !AferindoPrograma && (Integer.parseInt(textSorteioNumero.getText()) == 0)) {
+		} else if (!erroEncontrado && !programaAferido && (Integer.parseInt(textSorteioNumero.getText()) == 0)) {
 			lblErroSorteioNumero.setVisible(true);
-			DeuErro = true;
+			erroEncontrado = true;
 			JOptionPane.showMessageDialog(null, "O número do sorteio não pode ser zero!\r\nCorrija este campo.", "Sorteio", JOptionPane.WARNING_MESSAGE);
-		} else if (DeuErro) {
+		} else if (erroEncontrado) {
 			JOptionPane.showMessageDialog(null, "Prencher corretamente os campos assinalados com asterísco vermelho!", "Sorteio", JOptionPane.WARNING_MESSAGE);
 		}
-		return DeuErro;
+		return erroEncontrado;
 	}
 
-	protected void TimerSorteio_Timer() {
+	protected void iniciarTimer() {
 		if (EfetuarSorteio.isRunning()) {
-			long TempoAgora =(new Date()).getTime();
-			long delta = (TempoAgora - TempoInicial) / 1000;
+			long horaLocal =(new Date()).getTime();
+			long delta = (horaLocal - tempoInicial) / 1000;
 			lblValorNumeroFaixas.setText(EfetuarSorteio.numDeFaixas);
 			lblValorEsperado.setText(EfetuarSorteio.valorEsperado);
-			lblNumeroIteracoes.setText(FormatoNumero.format(EfetuarSorteio.vezes - 1));
-			lblNumeroPremios.setText(FormatoNumero.format(EfetuarSorteio.premios - 1));
-			lblValorTempoTranscorrido.setText(FormatoNumero.format(delta));
-			if (DeltaAnterior != delta) {
+			lblNumeroIteracoes.setText(formatoNumero.format(EfetuarSorteio.vezes - 1));
+			lblNumeroPremios.setText(formatoNumero.format(EfetuarSorteio.premios - 1));
+			lblValorTempoTranscorrido.setText(formatoNumero.format(delta));
+			if (deltaAnterior != delta) {
 				int val;
 				if (delta > 0)
 					val = EfetuarSorteio.vezes / (int)delta;
 				else
 					val = 0;
-				lblValorIteracoesPorSegundo.setText(FormatoNumero.format(val));
-				DeltaAnterior = delta;
+				lblValorIteracoesPorSegundo.setText(formatoNumero.format(val));
+				deltaAnterior = delta;
 			}
 		} else {
-			long TempoFinal =(new Date()).getTime();
-			long delta = (TempoFinal - TempoInicial) / 1000;
-			TimerSorteio.stop();
+			long tempoFinal =(new Date()).getTime();
+			long delta = (tempoFinal - tempoInicial) / 1000;
+			timerSorteio.stop();
 			lblValorDesvioPadrao.setText(EfetuarSorteio.valorDesvioPadrao);
 			lblValorEsperado.setText(EfetuarSorteio.valorEsperado);
 			lblValorMedio.setText(EfetuarSorteio.valorMedio);
 			lblValorMaximo.setText(EfetuarSorteio.valorMaximo);
 			lblValorMinimo.setText(EfetuarSorteio.valorMinimo);
 			lblValorDiferencaMaxMin.setText(EfetuarSorteio.diferencaValoresMaxMin);
-			lblNumeroIteracoes.setText(FormatoNumero.format(EfetuarSorteio.vezes - 1));
-			lblNumeroPremios.setText(FormatoNumero.format(EfetuarSorteio.premios - 1));
-			if (!AferindoPrograma)
+			lblNumeroIteracoes.setText(formatoNumero.format(EfetuarSorteio.vezes - 1));
+			lblNumeroPremios.setText(formatoNumero.format(EfetuarSorteio.premios - 1));
+			if (!programaAferido)
 				lblHashResultado.setText(EfetuarSorteio.hashResultado);
-			lblValorTempoTranscorrido.setText(FormatoNumero.format(delta));
-			boolean ContinuaExecucao = false;
+			lblValorTempoTranscorrido.setText(formatoNumero.format(delta));
+			boolean execucaoContinua = false;
 			if (EfetuarSorteio.msgDeErro.length() > 0) {
 				String msg, titulo;
-				if (AferindoPrograma) {
+				if (programaAferido) {
 					msg = "da aferição: ";
 					titulo = "Executando a aferição do Programa";
 				} else {
@@ -913,12 +913,12 @@ public class Sorteio extends JFrame {
 				} else {
 				}
 			}
-			if (!ContinuaExecucao)
-				HabilitarCampos(true);
+			if (!execucaoContinua)
+				habilitarCampos(true);
 		}
 	}
 
-	protected void HabilitarCampos(boolean Sim) {
+	protected void habilitarCampos(boolean Sim) {
 		textExtracao.setEnabled(Sim);
 		textDataExtracao.setEnabled(Sim);
 		textPremio1.setEnabled(Sim);
@@ -939,7 +939,7 @@ public class Sorteio extends JFrame {
 			btnCancelar.setText("Parar");
 			btnCancelar.setToolTipText("Parar a execução do programa.");
 		}
-		if (AferindoPrograma) {
+		if (programaAferido) {
 			// Aferindo programa.
 			btnSortear.setEnabled(Sim);
 			lblTituloHashResultado.setVisible(false);
@@ -950,24 +950,24 @@ public class Sorteio extends JFrame {
 		}
 	}
 
-	protected void CarregarValoresPadrao() {
-		textExtracao.setText(afr_Extracao);
-		textDataExtracao.setText(afr_DataExtracao);
-		textPremio1.setText(afr_Premio1);
-		textPremio2.setText(afr_Premio2);
-		textPremio3.setText(afr_Premio3);
-		textPremio4.setText(afr_Premio4);
-		textPremio5.setText(afr_Premio5);
-		textSorteioNumero.setText(afr_Sorteio);
-		textDataSorteio.setText(afr_DataSorteio);
-		textDataDiarioOficial.setText(afr_DataDiarioOficial);
-		textTotalBilhetes.setText(afr_Bilhetes);
-		textTotalPremios.setText(afr_Premios);
+	protected void carregarValoresPadrao() {
+		textExtracao.setText(afrExtracao);
+		textDataExtracao.setText(afrDataExtracao);
+		textPremio1.setText(afrPremio1);
+		textPremio2.setText(afrPremio2);
+		textPremio3.setText(afrPremio3);
+		textPremio4.setText(afrPremio4);
+		textPremio5.setText(afrPremio5);
+		textSorteioNumero.setText(afrSorteio);
+		textDataSorteio.setText(afrDataSorteio);
+		textDataDiarioOficial.setText(afrDataDiarioOficial);
+		textTotalBilhetes.setText(afrBilhetes);
+		textTotalPremios.setText(afrPremios);
 		lblArquivoImportacaoExtracoes.setVisible(false);
 		chckbxUmaLinha.setVisible(false);
 	}
 
-	protected void InicializarCampos() {
+	protected void inicializarCampos() {
 		// Limpar os campos de entrada de Informações
 		textExtracao.setText("");
 		lblErroExtracao.setVisible(false);
@@ -996,7 +996,7 @@ public class Sorteio extends JFrame {
 		chckbxUmaLinha.setVisible(false);
 		lblArquivoImportacaoExtracoes.setVisible(false);
 	}
-	protected void InicializarResultados() {
+	protected void inicializarResultados() {
 		// Limpar os campos de resultados
 		lblValorNumeroFaixas.setText("");
 		lblValorEsperado.setText("");
@@ -1041,10 +1041,3 @@ public class Sorteio extends JFrame {
 		}
 	}
 }
-
-
-
-
-
-
-
