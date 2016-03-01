@@ -52,7 +52,7 @@ public class Sorteio extends JFrame {
 	private String afr_DataExtracao = "28/03/2015";
 	private String afr_Extracao = "04957";
 	// Valores utilizados para aferição deste programa
-	private String afr_Sorteio = "00000";
+	private String afr_Sorteio = "00001";
 	private String afr_DataSorteio = "29/03/2015";
 	private String afr_DataDiarioOficial = "30/03/2015";
 	private String afr_Bilhetes = "10.000.000";
