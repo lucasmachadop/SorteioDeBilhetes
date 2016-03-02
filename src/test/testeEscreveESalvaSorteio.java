@@ -9,7 +9,7 @@ public class testeEscreveESalvaSorteio {
 
 	@Test
 	public void testaLerArquivo() {		
-		assertEquals(1134517053,EscreveESalvaSorteio.lerArquivo("testeHash.txt").hashCode());				
+		assertEquals(1084761845,EscreveESalvaSorteio.lerArquivo("testeHash.txt").hashCode());
 	}
 
 }
