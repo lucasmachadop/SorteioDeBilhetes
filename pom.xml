@@ -4,7 +4,7 @@
     <groupId>com.sort-bilhetes</groupId>
     <artifactId>sort-bilhetes</artifactId>
     <version>1.0</version>
-    <name>SB</name>
+    <name>Sorteador de Bilhetes</name>
     <dependencies>
 
          <dependency>
