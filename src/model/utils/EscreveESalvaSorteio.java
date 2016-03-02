@@ -22,11 +22,11 @@ public class EscreveESalvaSorteio {
 			try {
 				File tempFile = File.createTempFile("meu", ".tmp");
 				nomeArquivo = tempFile.getAbsolutePath();
-				EfetuarSorteio.en_NomeArquivoTXT = nomeArquivo;
+				EfetuarSorteio.nomeArquivoTxt = nomeArquivo;
 				return new OutputStreamWriter(new FileOutputStream(tempFile),
 						encoding);
 			} catch (IOException e) {
-				EfetuarSorteio.MsgErro = "DEU ERRO: "+e.getMessage();
+				EfetuarSorteio.msgDeErro = "DEU ERRO: "+e.getMessage();
 				return null;
 			}
 		} else {
@@ -35,7 +35,7 @@ public class EscreveESalvaSorteio {
 						encoding);
 			} catch (UnsupportedEncodingException | FileNotFoundException e) {
 				// TODO Auto-generated catch block
-				EfetuarSorteio.MsgErro = "DEU ERRO: "+e.getMessage();
+				EfetuarSorteio.msgDeErro = "DEU ERRO: "+e.getMessage();
 				e.printStackTrace();
 				return null;
 			}
@@ -57,29 +57,29 @@ public class EscreveESalvaSorteio {
 	
 	public static boolean geraArquivoHash(){
 		String Resultado = "";
-		String NomeArquivoMD5 = EfetuarSorteio.en_NomeArquivoTXT + ".md5";
+		String NomeArquivoMD5 = EfetuarSorteio.nomeArquivoTxt + ".md5";
 		BufferedWriter Output;
 		try {
 			Output = new BufferedWriter(new FileWriter(NomeArquivoMD5));
 		} catch (IOException e1) {
-			EfetuarSorteio.MsgErro = "Não conseguiu criar " + NomeArquivoMD5
+			EfetuarSorteio.msgDeErro = "Não conseguiu criar " + NomeArquivoMD5
 					+ ". Deu erro: " + e1.getMessage();
-			EfetuarSorteio.EmExecucao = false;
+			EfetuarSorteio.emExecucao = false;
 			return false;
 		}
-		Resultado = String.format("%s  %s%s", EfetuarSorteio.sai_HashResultado,
-				EfetuarSorteio.en_NomeArquivoTXT, System.getProperty("line.separator"));
+		Resultado = String.format("%s  %s%s", EfetuarSorteio.hashResultado,
+				EfetuarSorteio.nomeArquivoTxt, System.getProperty("line.separator"));
 		try {
 			Output.append(Resultado.toLowerCase());
 		} catch (IOException e1) {
-			EfetuarSorteio.MsgErro = "Não conseguiu gravar em " + NomeArquivoMD5
+			EfetuarSorteio.msgDeErro = "Não conseguiu gravar em " + NomeArquivoMD5
 					+ ". Deu erro: " + e1.getMessage();
 			try {
 				Output.close();
 			} catch (IOException e) {
-				EfetuarSorteio.MsgErro = "Não conseguiu fechar " + NomeArquivoMD5
+				EfetuarSorteio.msgDeErro = "Não conseguiu fechar " + NomeArquivoMD5
 						+ ". Deu erro: " + e1.getMessage();
-				EfetuarSorteio.EmExecucao = false;
+				EfetuarSorteio.emExecucao = false;
 				e.printStackTrace();
 			}
 			return false;
@@ -88,9 +88,9 @@ public class EscreveESalvaSorteio {
 		try {
 			Output.close();
 		} catch (IOException e1) {
-			EfetuarSorteio.MsgErro = "Não conseguiu fechar " + NomeArquivoMD5
+			EfetuarSorteio.msgDeErro = "Não conseguiu fechar " + NomeArquivoMD5
 					+ ". Deu erro: " + e1.getMessage();
-			EfetuarSorteio.EmExecucao = false;
+			EfetuarSorteio.emExecucao = false;
 			return false ;
 		}
 		return true;

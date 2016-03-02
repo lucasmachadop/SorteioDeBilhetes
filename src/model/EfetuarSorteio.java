@@ -32,25 +32,25 @@ import model.utils.GeradorDeHash;
 
 public class EfetuarSorteio extends Thread {
 
-	public static boolean EmExecucao;
-	public static String en_Extracao, en_DataExtracao, en_Premio1, en_Premio2,
-			en_Premio3, en_Premio4, en_Premio5, en_SorteioNumero,
-			en_DataSorteio, en_DataDiarioOficial, en_TotalBilhetes,
-			en_TotalPremios, en_NomeArquivoTXT;
+	public static boolean emExecucao;
+	public static String extracao, dataExtracao, premio1, premio2,
+			premio3, premio4, premio5, numDoSorteio,
+			dataSorteio, dataDiarioOficial, totalDeBilhetes,
+			totalDePremios, nomeArquivoTxt;
 
-	public static String sai_ValorNumeroFaixas;
-	public static String sai_ValorEsperado;
-	public static String sai_ValorDesvioPadrao;
-	public static String sai_ValorMedio;
-	public static String sai_ValorMaximo;
-	public static String sai_ValorMinimo;
-	public static String sai_ValorDiferencaMaxMin;
-	public static String sai_HashResultado;
-	public static int Vezes;
-	public static int Premios;
-	public static String Nome;
-	public static String MsgErro;
-	public static boolean PararSorteio;
+	public static String numDeFaixas;
+	public static String valorEsperado;
+	public static String valorDesvioPadrao;
+	public static String valorMedio;
+	public static String valorMaximo;
+	public static String valorMinimo;
+	public static String diferencaValoresMaxMin;
+	public static String hashResultado;
+	public static int vezes;
+	public static int premios;
+	public static String nomeSorteio;
+	public static String msgDeErro;
+	public static boolean sorteioParado;
 
 	static String MD5_Aferido = "2dca7c8d565cf3a15d1fce4c8997c636";
 
@@ -65,125 +65,125 @@ public class EfetuarSorteio extends Thread {
 			String DataDiarioOficial, String TotalBilhetes,
 			String TotalPremios, String NomeArquivoTXT) {
 		super(str);
-		Nome = str;
-		en_Extracao = Extracao;
-		en_DataExtracao = DataExtracao;
-		en_Premio1 = Premio1;
-		en_Premio2 = Premio2;
-		en_Premio3 = Premio3;
-		en_Premio4 = Premio4;
-		en_Premio5 = Premio5;
-		en_SorteioNumero = SorteioNumero;
-		en_DataSorteio = DataSorteio;
-		en_DataDiarioOficial = DataDiarioOficial;
-		en_TotalBilhetes = TotalBilhetes;
-		en_TotalPremios = TotalPremios;
-		en_NomeArquivoTXT = NomeArquivoTXT;
+		nomeSorteio = str;
+		extracao = Extracao;
+		dataExtracao = DataExtracao;
+		premio1 = Premio1;
+		premio2 = Premio2;
+		premio3 = Premio3;
+		premio4 = Premio4;
+		premio5 = Premio5;
+		numDoSorteio = SorteioNumero;
+		dataSorteio = DataSorteio;
+		dataDiarioOficial = DataDiarioOficial;
+		totalDeBilhetes = TotalBilhetes;
+		totalDePremios = TotalPremios;
+		nomeArquivoTxt = NomeArquivoTXT;
 	}
 
 	public void run() {
-		EmExecucao = true;
-		PararSorteio = false;
-		String Resultado = "";
+		emExecucao = true;
+		sorteioParado = false;
+		String resultado = "";
 
-		MsgErro = "";
+		msgDeErro = "";
 
-		sai_ValorEsperado = "";
-		sai_ValorDesvioPadrao = "";
-		sai_ValorMedio = "";
-		sai_ValorMaximo = "";
-		sai_ValorMinimo = "";
-		sai_ValorDiferencaMaxMin = "";
-		sai_HashResultado = "";
+		valorEsperado = "";
+		valorDesvioPadrao = "";
+		valorMedio = "";
+		valorMaximo = "";
+		valorMinimo = "";
+		diferencaValoresMaxMin = "";
+		hashResultado = "";
 
 		CharSequence target = ".";
 		CharSequence replacement = "";
-		String StrBilhetes = en_TotalBilhetes.replace(target, replacement);
-		int NumBilhetes = Integer.parseInt(StrBilhetes);
+		String strBilhetes = totalDeBilhetes.replace(target, replacement);
+		int numDeBilhetes = Integer.parseInt(strBilhetes);
 
-		String StrPremios = en_TotalPremios.replace(target, replacement);
-		int NumPremios = Integer.parseInt(StrPremios);
+		String strPremios = totalDePremios.replace(target, replacement);
+		int numDePremios = Integer.parseInt(strPremios);
 
-		sai_ValorNumeroFaixas = FormatacaoDocumento.mf
+		numDeFaixas = FormatacaoDocumento.mf
 				.format(Sorteio.NumeroFaixas);
-		double ValorMedioEsperado = NumPremios / Sorteio.NumeroFaixas;
-		sai_ValorEsperado = FormatacaoDocumento.mf.format(ValorMedioEsperado);
+		double valorMedioEsperado = numDePremios / Sorteio.NumeroFaixas;
+		valorEsperado = FormatacaoDocumento.mf.format(valorMedioEsperado);
 
 		SortedMap<Integer, Integer> BilhetesSorteados = new TreeMap<Integer, Integer>();
 
-		int[] valores;
+		int[] valorDosBilhetes;
 
-		boolean MetodoHASH = usarMetodoHash(NumPremios);
+		boolean metodoHash = usarMetodoHash(numDePremios);
 
-		Vezes = 1;
+		vezes = 1;
 
-		Resultado = FormatacaoDocumento.montaCabeçalhoArquivo();
+		resultado = FormatacaoDocumento.montaCabeçalhoArquivo();
 
-		OutputStreamWriter outS = null;
-		PrintWriter out = null;
+		OutputStreamWriter outSWriter = null;
+		PrintWriter printWriter = null;
 
-		outS = EscreveESalvaSorteio.geraArquivo(en_NomeArquivoTXT);
-		if (outS==null) {
+		outSWriter = EscreveESalvaSorteio.geraArquivo(nomeArquivoTxt);
+		if (outSWriter==null) {
 			encerrarSorteio();
 			return;
 		}
-		out = new PrintWriter(new BufferedWriter(outS));
-		out.print(Resultado);
+		printWriter = new PrintWriter(new BufferedWriter(outSWriter));
+		printWriter.print(resultado);
 
 		// Sorteio dos bilhetes.
-		Random rg = determinaRNGdoSorteio(geraSemente(en_Extracao,
-				en_DataExtracao, en_Premio1, en_Premio2, en_Premio3,
-				en_Premio4, en_Premio5, en_SorteioNumero, en_DataSorteio));
+		Random rngDoSorteio = determinaRNGdoSorteio(geraSemente(extracao,
+				dataExtracao, premio1, premio2, premio3,
+				premio4, premio5, numDoSorteio, dataSorteio));
 
-		if (MetodoHASH) {
-			valores = new int[1];
-			BilhetesSorteados = sorteioDosBilhetes(out, rg, NumPremios,
-					NumBilhetes, BilhetesSorteados);
+		if (metodoHash) {
+			valorDosBilhetes = new int[1];
+			BilhetesSorteados = sorteioDosBilhetes(printWriter, rngDoSorteio, numDePremios,
+					numDeBilhetes, BilhetesSorteados);
 
 		} else {
 
-			valores = sorteioDosBilhetes(out, rg, NumPremios, NumBilhetes);
+			valorDosBilhetes = sorteioDosBilhetes(printWriter, rngDoSorteio, numDePremios, numDeBilhetes);
 
 		}
 		if (BilhetesSorteados == null) {
-			MsgErro = "A operação foi cancelada pelo operador!";
+			msgDeErro = "A operação foi cancelada pelo operador!";
 			encerrarSorteio();
 			return;
 		}
 
 		// Obter os valores por faixas de valores dos bilhetes.
 
-		double delta = calculaQuantidadeFaixas(NumBilhetes,
+		double delta = calculaQuantidadeFaixas(numDeBilhetes,
 				Sorteio.NumeroFaixas);
-		int[] faixas;
+		int[] numFaixas;
 
 		if (BilhetesSorteados.isEmpty()) {
 
-			faixas = calculaFaixasDeValores(delta, NumBilhetes, valores);
+			numFaixas = calculaFaixasDeValores(delta, numDeBilhetes, valorDosBilhetes);
 
 		} else {
 
-			faixas = calculaFaixasDeValores(delta, NumBilhetes,
+			numFaixas = calculaFaixasDeValores(delta, numDeBilhetes,
 					BilhetesSorteados);
 
 		}
-		if (faixas == null) {
+		if (numFaixas == null) {
 			encerrarSorteio();
 			return;
 		}
 
-		Resultado = FormatacaoDocumento.montaCabecalhoFaixas();
+		resultado = FormatacaoDocumento.montaCabecalhoFaixas();
 
-		Resultado += calculaDesvioPadrao(delta, faixas);
+		resultado += calculaDesvioPadrao(delta, numFaixas);
 
-		Resultado += FormatacaoDocumento.montaEstatisticas();
+		resultado += FormatacaoDocumento.montaEstatisticas();
 
-		out.print(Resultado);
+		printWriter.print(resultado);
 		// Fechar o arquivo.
-		out.close();
+		printWriter.close();
 
-		sai_HashResultado = GeradorDeHash.retornaHash(EscreveESalvaSorteio
-				.lerArquivo(en_NomeArquivoTXT));
+		hashResultado = GeradorDeHash.retornaHash(EscreveESalvaSorteio
+				.lerArquivo(nomeArquivoTxt));
 
 		if (!Sorteio.AferindoPrograma) {
 			// Criar o arquivo para gravar o HASH.
@@ -192,20 +192,20 @@ public class EfetuarSorteio extends Thread {
 				return;
 			}
 
-			abrir(en_NomeArquivoTXT);
+			abrirArquivoTxt(nomeArquivoTxt);
 		}
-		if (Nome.equals("Aferir") && !MD5_Aferido.equals(sai_HashResultado)) {
-			MsgErro = "Não confere com o resultado esperado! o resultado é = "
-					+ sai_HashResultado;
+		if (nomeSorteio.equals("Aferir") && !MD5_Aferido.equals(hashResultado)) {
+			msgDeErro = "Não confere com o resultado esperado! o resultado é = "
+					+ hashResultado;
 		}
 		if (Sorteio.AferindoPrograma) {
 			// Remover o arquivo temporÃ¡rio criado.
-			(new File(en_NomeArquivoTXT)).delete();
+			(new File(nomeArquivoTxt)).delete();
 		}
-		EmExecucao = false;
+		emExecucao = false;
 	}
 
-	public void abrir(String arquivo) {
+	public void abrirArquivoTxt(String arquivo) {
 		try {
 			// tentando abrir o arquivo no WINDOWS
 			Runtime.getRuntime().exec("explorer.exe " + arquivo);
@@ -221,16 +221,16 @@ public class EfetuarSorteio extends Thread {
 	}
 
 	public static boolean isRunning() {
-		return EmExecucao;
+		return emExecucao;
 	}
 
-	public static void Parar() {
-		PararSorteio = true;
+	public static void pararSorteio() {
+		sorteioParado = true;
 	}
 
 	public void encerrarSorteio() {
 
-		EmExecucao = false;
+		emExecucao = false;
 
 	}
 
@@ -238,16 +238,16 @@ public class EfetuarSorteio extends Thread {
 			Random rg, int numPremios, int nBilhetes,
 			SortedMap<Integer, Integer> bilhetesSorteados) {
 		String resultado = "";
-		for (EfetuarSorteio.Premios = 1; EfetuarSorteio.Premios <= numPremios; EfetuarSorteio.Vezes++) {
-			if (!PararSorteio) {
+		for (EfetuarSorteio.premios = 1; EfetuarSorteio.premios <= numPremios; EfetuarSorteio.vezes++) {
+			if (!sorteioParado) {
 				int ri = rg.nextInt(nBilhetes) + 1;
 				if (!bilhetesSorteados.containsKey(ri)) {
-					bilhetesSorteados.put(ri, EfetuarSorteio.Vezes);
+					bilhetesSorteados.put(ri, EfetuarSorteio.vezes);
 				} else {
 					resultado = String
 							.format("%10s  %10s %11s  %s\r\n",
 									FormatacaoDocumento.mf
-											.format(EfetuarSorteio.Vezes),
+											.format(EfetuarSorteio.vezes),
 									"-",
 									FormatacaoDocumento.mf.format(ri),
 									"Bilhete já foi sorteado na iteração "
@@ -257,8 +257,8 @@ public class EfetuarSorteio extends Thread {
 					out.print(resultado);
 					continue;
 				}
-				resultado = montaResultado(Vezes, Premios, ri);
-				EfetuarSorteio.Premios++;
+				resultado = montaResultado(vezes, premios, ri);
+				EfetuarSorteio.premios++;
 				out.println(resultado);
 				
 			} else {
@@ -274,26 +274,26 @@ public class EfetuarSorteio extends Thread {
 			int nBilhetes) {
 		int[] valores = new int[nBilhetes + 1];
 		String resultado = "";
-		for (EfetuarSorteio.Premios = 1; EfetuarSorteio.Premios <= numPremios; EfetuarSorteio.Vezes++) {
-			if (!PararSorteio) {
+		for (EfetuarSorteio.premios = 1; EfetuarSorteio.premios <= numPremios; EfetuarSorteio.vezes++) {
+			if (!sorteioParado) {
 
-				int ri = rg.nextInt(nBilhetes) + 1;
-				if (valores[ri] > 0) {
+				int chaveBilhetes = rg.nextInt(nBilhetes) + 1;
+				if (valores[chaveBilhetes] > 0) {
 					resultado = String
 							.format("%10s  %10s %11s  %s\r\n",
 									FormatacaoDocumento.mf
-											.format(EfetuarSorteio.Vezes),
+											.format(EfetuarSorteio.vezes),
 									"-",
-									FormatacaoDocumento.mf.format(ri),
+									FormatacaoDocumento.mf.format(chaveBilhetes),
 									"Bilhete já foi sorteado na iteração "
 											+ FormatacaoDocumento.mf
-													.format(valores[ri]));
+													.format(valores[chaveBilhetes]));
 					out.print(resultado);
 					continue;
 				}
-				valores[ri] = EfetuarSorteio.Vezes;
-				resultado = montaResultado(Vezes, Premios, ri);
-				EfetuarSorteio.Premios++;
+				valores[chaveBilhetes] = EfetuarSorteio.vezes;
+				resultado = montaResultado(vezes, premios, chaveBilhetes);
+				EfetuarSorteio.premios++;
 				out.println(resultado);
 
 			} else {
@@ -344,8 +344,8 @@ public class EfetuarSorteio extends Thread {
 		// MÃ©todo DIRETO
 		
 		for (i = 1; i <= nBilhetes; i++) {
-			if (PararSorteio) {
-				MsgErro = "A operação foi cancelada pelo operador!";
+			if (sorteioParado) {
+				msgDeErro = "A operação foi cancelada pelo operador!";
 
 				return null;
 			}
@@ -369,8 +369,8 @@ public class EfetuarSorteio extends Thread {
 		int i, j;
 
 		for (Entry<Integer, Integer> nextEntry : bilhetesSorteados.entrySet()) {
-			if (PararSorteio) {
-				MsgErro = "A operação foi cancelada pelo operador!";
+			if (sorteioParado) {
+				msgDeErro = "A operação foi cancelada pelo operador!";
 
 				return null;
 			}
@@ -389,9 +389,9 @@ public class EfetuarSorteio extends Thread {
 	}
 
 	public String calculaDesvioPadrao(double delta, int[] faixas) {
-		int Max = 0, Min = 2 * (int) delta;
-		double SomaDosQuadrados = 0;
-		double DesvioPadrao = 0;
+		int maxPremio = 0, minPremio = 2 * (int) delta;
+		double somaDosQuadrados = 0;
+		double desvioPadrao = 0;
 		double Media = 0;
 		String Resultado = "";
 		int Soma = 0;
@@ -403,28 +403,28 @@ public class EfetuarSorteio extends Thread {
 					FormatacaoDocumento.mf.format((int) (delta * (j + 1))),
 					FormatacaoDocumento.mf.format(faixas[j]));
 			Soma += faixas[j];
-			if (Min > faixas[j])
-				Min = faixas[j];
-			if (Max < faixas[j])
-				Max = faixas[j];
+			if (minPremio > faixas[j])
+				minPremio = faixas[j];
+			if (maxPremio < faixas[j])
+				maxPremio = faixas[j];
 		}
 
 		Media = Soma / Sorteio.NumeroFaixas;
 
 		for (int j = 0; j < Sorteio.NumeroFaixas; j++) {
-			SomaDosQuadrados += Math.pow((faixas[j] - Media), 2);
+			somaDosQuadrados += Math.pow((faixas[j] - Media), 2);
 		}
-		DesvioPadrao = Math.sqrt(SomaDosQuadrados / (Sorteio.NumeroFaixas - 1));
+		desvioPadrao = Math.sqrt(somaDosQuadrados / (Sorteio.NumeroFaixas - 1));
 
-		int DifMaxMin = Max - Min;
+		int difMaxMin = maxPremio - minPremio;
 
 		// FormataÃ§Ã£o dos resultados.
-		sai_ValorDesvioPadrao = FormatacaoDocumento.mf
-				.format((int) DesvioPadrao);
-		sai_ValorMedio = FormatacaoDocumento.mf.format(Media);
-		sai_ValorMaximo = FormatacaoDocumento.mf.format(Max);
-		sai_ValorMinimo = FormatacaoDocumento.mf.format(Min);
-		sai_ValorDiferencaMaxMin = FormatacaoDocumento.mf.format(DifMaxMin);
+		valorDesvioPadrao = FormatacaoDocumento.mf
+				.format((int) desvioPadrao);
+		valorMedio = FormatacaoDocumento.mf.format(Media);
+		valorMaximo = FormatacaoDocumento.mf.format(maxPremio);
+		valorMinimo = FormatacaoDocumento.mf.format(minPremio);
+		diferencaValoresMaxMin = FormatacaoDocumento.mf.format(difMaxMin);
 
 		return Resultado;
 	}
