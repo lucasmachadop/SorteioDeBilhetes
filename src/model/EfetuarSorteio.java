@@ -105,8 +105,8 @@ public class EfetuarSorteio extends Thread {
 		int numDePremios = Integer.parseInt(strPremios);
 
 		numDeFaixas = FormatacaoDocumento.mf
-				.format(Sorteio.NumeroFaixas);
-		double valorMedioEsperado = numDePremios / Sorteio.NumeroFaixas;
+				.format(Sorteio.numDeFaixas);
+		double valorMedioEsperado = numDePremios / Sorteio.numDeFaixas;
 		valorEsperado = FormatacaoDocumento.mf.format(valorMedioEsperado);
 
 		SortedMap<Integer, Integer> BilhetesSorteados = new TreeMap<Integer, Integer>();
@@ -117,7 +117,7 @@ public class EfetuarSorteio extends Thread {
 
 		vezes = 1;
 
-		resultado = FormatacaoDocumento.montaCabeçalhoArquivo();
+		resultado = FormatacaoDocumento.montaCabecalhoArquivo();
 
 		OutputStreamWriter outSWriter = null;
 		PrintWriter printWriter = null;
@@ -146,7 +146,7 @@ public class EfetuarSorteio extends Thread {
 
 		}
 		if (BilhetesSorteados == null) {
-			msgDeErro = "A operação foi cancelada pelo operador!";
+			msgDeErro = "A operaï¿½ï¿½o foi cancelada pelo operador!";
 			encerrarSorteio();
 			return;
 		}
@@ -154,7 +154,7 @@ public class EfetuarSorteio extends Thread {
 		// Obter os valores por faixas de valores dos bilhetes.
 
 		double delta = calculaQuantidadeFaixas(numDeBilhetes,
-				Sorteio.NumeroFaixas);
+				Sorteio.numDeFaixas);
 		int[] numFaixas;
 
 		if (BilhetesSorteados.isEmpty()) {
@@ -185,7 +185,7 @@ public class EfetuarSorteio extends Thread {
 		hashResultado = GeradorDeHash.retornaHash(EscreveESalvaSorteio
 				.lerArquivo(nomeArquivoTxt));
 
-		if (!Sorteio.AferindoPrograma) {
+		if (!Sorteio.programaAferido) {
 			// Criar o arquivo para gravar o HASH.
 			if(!EscreveESalvaSorteio.geraArquivoHash()){
 				encerrarSorteio();
@@ -195,10 +195,10 @@ public class EfetuarSorteio extends Thread {
 			abrirArquivoTxt(nomeArquivoTxt);
 		}
 		if (nomeSorteio.equals("Aferir") && !MD5_Aferido.equals(hashResultado)) {
-			msgDeErro = "Não confere com o resultado esperado! o resultado é = "
+			msgDeErro = "Nï¿½o confere com o resultado esperado! o resultado ï¿½ = "
 					+ hashResultado;
 		}
-		if (Sorteio.AferindoPrograma) {
+		if (Sorteio.programaAferido) {
 			// Remover o arquivo temporÃ¡rio criado.
 			(new File(nomeArquivoTxt)).delete();
 		}
@@ -250,7 +250,7 @@ public class EfetuarSorteio extends Thread {
 											.format(EfetuarSorteio.vezes),
 									"-",
 									FormatacaoDocumento.mf.format(ri),
-									"Bilhete já foi sorteado na iteração "
+									"Bilhete jï¿½ foi sorteado na iteraï¿½ï¿½o "
 											+ FormatacaoDocumento.mf
 													.format(bilhetesSorteados
 															.get(ri)));
@@ -285,7 +285,7 @@ public class EfetuarSorteio extends Thread {
 											.format(EfetuarSorteio.vezes),
 									"-",
 									FormatacaoDocumento.mf.format(chaveBilhetes),
-									"Bilhete já foi sorteado na iteração "
+									"Bilhete jï¿½ foi sorteado na iteraï¿½ï¿½o "
 											+ FormatacaoDocumento.mf
 													.format(valores[chaveBilhetes]));
 					out.print(resultado);
@@ -339,13 +339,13 @@ public class EfetuarSorteio extends Thread {
 	}
 
 	public int[] calculaFaixasDeValores(double delta, int nBilhetes, int[] valores) {
-		int[] faixas = new int[Sorteio.NumeroFaixas];
+		int[] faixas = new int[Sorteio.numDeFaixas];
 		int i, j;
 		// MÃ©todo DIRETO
 		
 		for (i = 1; i <= nBilhetes; i++) {
 			if (sorteioParado) {
-				msgDeErro = "A operação foi cancelada pelo operador!";
+				msgDeErro = "A operaï¿½ï¿½o foi cancelada pelo operador!";
 
 				return null;
 			}
@@ -364,17 +364,17 @@ public class EfetuarSorteio extends Thread {
 	public int[] calculaFaixasDeValores(double delta, int nBilhetes,
 			SortedMap<Integer, Integer> bilhetesSorteados) {
 
-		int[] faixas = new int[Sorteio.NumeroFaixas];
+		int[] faixas = new int[Sorteio.numDeFaixas];
 
 		int i, j;
 
 		for (Entry<Integer, Integer> nextEntry : bilhetesSorteados.entrySet()) {
 			if (sorteioParado) {
-				msgDeErro = "A operação foi cancelada pelo operador!";
+				msgDeErro = "A operaï¿½ï¿½o foi cancelada pelo operador!";
 
 				return null;
 			}
-			for (j = 0; j < Sorteio.NumeroFaixas; j++) {
+			for (j = 0; j < Sorteio.numDeFaixas; j++) {
 				i = (int) delta * j;
 				int k = (int) delta * (j + 1);
 				if ((nextEntry.getKey() > i) && (nextEntry.getKey() <= k))
@@ -395,7 +395,7 @@ public class EfetuarSorteio extends Thread {
 		double Media = 0;
 		String Resultado = "";
 		int Soma = 0;
-		for (int j = 0; j < Sorteio.NumeroFaixas; j++) {
+		for (int j = 0; j < Sorteio.numDeFaixas; j++) {
 			Resultado += String.format(
 					"%10s      %11s    %11s        %10s\r\n",
 					FormatacaoDocumento.mf.format(j + 1),
@@ -409,12 +409,12 @@ public class EfetuarSorteio extends Thread {
 				maxPremio = faixas[j];
 		}
 
-		Media = Soma / Sorteio.NumeroFaixas;
+		Media = Soma / Sorteio.numDeFaixas;
 
-		for (int j = 0; j < Sorteio.NumeroFaixas; j++) {
+		for (int j = 0; j < Sorteio.numDeFaixas; j++) {
 			somaDosQuadrados += Math.pow((faixas[j] - Media), 2);
 		}
-		desvioPadrao = Math.sqrt(somaDosQuadrados / (Sorteio.NumeroFaixas - 1));
+		desvioPadrao = Math.sqrt(somaDosQuadrados / (Sorteio.numDeFaixas - 1));
 
 		int difMaxMin = maxPremio - minPremio;
 

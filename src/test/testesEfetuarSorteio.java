@@ -69,9 +69,9 @@ public class testesEfetuarSorteio {
 	
 	@Test
 	public void testaGeraSemente(){
-		String str = "bozoopalhaçodosatanás,vocêvemsempreaqui?";
+		String str = "bozoopalhaï¿½odosatanï¿½s,vocï¿½vemsempreaqui?";
 		
-		assertEquals(str,tmp.geraSemente("bozo", "o", "palhaço", "do", "satanás", ",você", "vem", "sempre", "aqui?"));
+		assertEquals(str,tmp.geraSemente("bozo", "o", "palhaï¿½o", "do", "satanï¿½s", ",vocï¿½", "vem", "sempre", "aqui?"));
 	
 	}
 	
@@ -88,7 +88,7 @@ public class testesEfetuarSorteio {
 	
 	@Test
 	public void testaCalculaFaixaDevalores(){
-	tmp.PararSorteio = false;
+	tmp.sorteioParado = false;
 	
 	int []valores={0,0,2,1,0,0,0,1,0,0,1 };
 	
@@ -104,7 +104,7 @@ public class testesEfetuarSorteio {
 	}
 	@Test
 	public void testaCalculaFaixaDevaloresQueUsouHash(){
-	tmp.PararSorteio = false;
+	tmp.sorteioParado = false;
 	
 	SortedMap<Integer, Integer> bilhetesSorteados = new TreeMap<Integer, Integer>();
 	bilhetesSorteados.put(0, 0);

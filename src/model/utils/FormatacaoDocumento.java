@@ -8,11 +8,11 @@ import gui.Sorteio;
 
 public class FormatacaoDocumento {
 	public static NumberFormat mf = NumberFormat.getInstance(Locale.GERMAN);
-	public static String montaCabeçalhoArquivo(){
-		String cabecalho =  "Secretaria da Fazenda do Estado de Goiás\r\n"
+	public static String montaCabecalhoArquivo(){
+		String cabecalho =  "Secretaria da Fazenda do Estado de Goiï¿½s\r\n"
 				+ "====================================================\r\n\r\n"
-				+ "Versão do Programa: "
-				+ Sorteio.Versao
+				+ "Versï¿½o do Programa: "
+				+ Sorteio.versao
 				+ "\r\n\r\n"
 				+ "Sorteio de Bilhetes\r\n"
 				+ "-------------------\r\n"
@@ -41,14 +41,14 @@ public class FormatacaoDocumento {
 				+ "\r\n";
 
 		cabecalho += "Data do Sorteio:         " + EfetuarSorteio.dataSorteio + "\r\n"
-				+ "Data no Diário Oficial:  " + EfetuarSorteio.dataDiarioOficial + "\r\n";
-		cabecalho += String.format("Número de Bilhetes:     %11s\r\n",
+				+ "Data no Diï¿½rio Oficial:  " + EfetuarSorteio.dataDiarioOficial + "\r\n";
+		cabecalho += String.format("Nï¿½mero de Bilhetes:     %11s\r\n",
 				EfetuarSorteio.totalDeBilhetes);
-		cabecalho += String.format("Número de Premios:      %11s\r\n",
+		cabecalho += String.format("Nï¿½mero de Premios:      %11s\r\n",
 				EfetuarSorteio.totalDePremios);
-		cabecalho += "\r\nRelação dos Bilhetes Premiados:\r\n"
+		cabecalho += "\r\nRelaï¿½ï¿½o dos Bilhetes Premiados:\r\n"
 				+ "-------------------------------\r\n"
-				+ "  Iteração      Premio     Bilhete  Observação\r\n"
+				+ "  Iteraï¿½ï¿½o      Premio     Bilhete  Observaï¿½ï¿½o\r\n"
 				+ "==========  ==========  ==========  =====================================\r\n";
 		return cabecalho;
 		}
@@ -63,36 +63,36 @@ public class FormatacaoDocumento {
 	
 	public static String montaCabecalhoFaixas(){
 		
-		String Resultado = "\r\nAVALIAÇÃO DO SORTEIO\r\n"
-				+ "====================\r\n" + "Número de Faixas de Bilhetes: "
+		String Resultado = "\r\nAVALIAï¿½ï¿½O DO SORTEIO\r\n"
+				+ "====================\r\n" + "Nï¿½mero de Faixas de Bilhetes: "
 				+ EfetuarSorteio.numDeFaixas + "\r\n";
 
-		// Obter os valores Máximo e Mínimo de Prêmios por faixa de valores de
+		// Obter os valores Mï¿½ximo e Mï¿½nimo de Prï¿½mios por faixa de valores de
 		// bilhetes.
-		Resultado += "\r\nRelação das Faixas de Bilhetes:\r\n"
+		Resultado += "\r\nRelaï¿½ï¿½o das Faixas de Bilhetes:\r\n"
 				+ "-------------------------------\r\n"
-				+ "     Faixa  Bilhete Inicial  Bilhete Final  Prêmios na Faixa\r\n"
+				+ "     Faixa  Bilhete Inicial  Bilhete Final  Prï¿½mios na Faixa\r\n"
 				+ "==========  ===============  =============  ================\r\n";
 		return Resultado;
 	}
 	
 	public static String montaEstatisticas(){
-	 String Resultado = "\r\nEstatisticas do Número de Prêmios Por Faixa de Bilhetes\r\n"
+	 String Resultado = "\r\nEstatisticas do Nï¿½mero de Prï¿½mios Por Faixa de Bilhetes\r\n"
 			+ "=======================================================\r\n";
-	Resultado += String.format("     Valor Médio Calculado:      %10s\r\n",
+	Resultado += String.format("     Valor Mï¿½dio Calculado:      %10s\r\n",
 			EfetuarSorteio.valorEsperado);
-	Resultado += String.format("     Valor Máximo Obtido:        %10s\r\n",
+	Resultado += String.format("     Valor Mï¿½ximo Obtido:        %10s\r\n",
 			EfetuarSorteio.valorMaximo);
-	Resultado += String.format("     Valor Mínimo Obtido:        %10s\r\n",
+	Resultado += String.format("     Valor Mï¿½nimo Obtido:        %10s\r\n",
 			EfetuarSorteio.valorMinimo);
 	Resultado += String.format(
-			"     Diferenças: Máximo - Mínimo: %10s\r\n",
+			"     Diferenï¿½as: Mï¿½ximo - Mï¿½nimo: %10s\r\n",
 			EfetuarSorteio.diferencaValoresMaxMin);
-	Resultado += String.format("     Valor Médio Obtido:         %10s\r\n",
+	Resultado += String.format("     Valor Mï¿½dio Obtido:         %10s\r\n",
 			EfetuarSorteio.valorMedio);
-	Resultado += String.format("     Desvio Padrão:              %10s\r\n",
+	Resultado += String.format("     Desvio Padrï¿½o:              %10s\r\n",
 			EfetuarSorteio.valorDesvioPadrao);
-	Resultado += String.format("     Número de Iterações:        %10s\r\n",
+	Resultado += String.format("     Nï¿½mero de Iteraï¿½ï¿½es:        %10s\r\n",
 			FormatacaoDocumento.mf.format(EfetuarSorteio.vezes - 1));
 	Resultado += "-----------------------------------------------------------------\r\n";
 	return Resultado;
