@@ -52,7 +52,8 @@ public class EfetuarSorteio extends Thread {
 	public static String msgDeErro;
 	public static boolean sorteioParado;
 
-	static String MD5_Aferido = "cc82437cf7dfebe2c8881164513e6780";
+//	static String MD5_Aferido = "cc82437cf7dfebe2c8881164513e6780";
+	static String MD5_Aferido = "ed0a629ed08fa79073c00c587b345833";
 
 	
 	public EfetuarSorteio(){
