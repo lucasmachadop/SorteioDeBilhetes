@@ -52,7 +52,7 @@ public class EfetuarSorteio extends Thread {
 	public static String msgDeErro;
 	public static boolean sorteioParado;
 
-	static String MD5_Aferido = "2dca7c8d565cf3a15d1fce4c8997c636";
+	static String MD5_Aferido = "cc82437cf7dfebe2c8881164513e6780";
 
 	
 	public EfetuarSorteio(){
@@ -146,7 +146,7 @@ public class EfetuarSorteio extends Thread {
 
 		}
 		if (BilhetesSorteados == null) {
-			msgDeErro = "A opera��o foi cancelada pelo operador!";
+			msgDeErro = "A operação foi cancelada pelo operador!";
 			encerrarSorteio();
 			return;
 		}
@@ -195,7 +195,7 @@ public class EfetuarSorteio extends Thread {
 			abrirArquivoTxt(nomeArquivoTxt);
 		}
 		if (nomeSorteio.equals("Aferir") && !MD5_Aferido.equals(hashResultado)) {
-			msgDeErro = "N�o confere com o resultado esperado! o resultado � = "
+			msgDeErro = "Não confere com o resultado esperado! o resultado é = "
 					+ hashResultado;
 		}
 		if (Sorteio.programaAferido) {
@@ -250,7 +250,7 @@ public class EfetuarSorteio extends Thread {
 											.format(EfetuarSorteio.vezes),
 									"-",
 									FormatacaoDocumento.mf.format(ri),
-									"Bilhete j� foi sorteado na itera��o "
+									"Bilhete já foi sorteado na iteração "
 											+ FormatacaoDocumento.mf
 													.format(bilhetesSorteados
 															.get(ri)));
@@ -285,7 +285,7 @@ public class EfetuarSorteio extends Thread {
 											.format(EfetuarSorteio.vezes),
 									"-",
 									FormatacaoDocumento.mf.format(chaveBilhetes),
-									"Bilhete j� foi sorteado na itera��o "
+									"Bilhete já foi sorteado na iteração "
 											+ FormatacaoDocumento.mf
 													.format(valores[chaveBilhetes]));
 					out.print(resultado);
@@ -345,7 +345,7 @@ public class EfetuarSorteio extends Thread {
 		
 		for (i = 1; i <= nBilhetes; i++) {
 			if (sorteioParado) {
-				msgDeErro = "A opera��o foi cancelada pelo operador!";
+				msgDeErro = "A operação foi cancelada pelo operador!";
 
 				return null;
 			}
@@ -370,7 +370,7 @@ public class EfetuarSorteio extends Thread {
 
 		for (Entry<Integer, Integer> nextEntry : bilhetesSorteados.entrySet()) {
 			if (sorteioParado) {
-				msgDeErro = "A opera��o foi cancelada pelo operador!";
+				msgDeErro = "A operação foi cancelada pelo operador!";
 
 				return null;
 			}

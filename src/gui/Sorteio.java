@@ -41,7 +41,7 @@ public class Sorteio extends JFrame {
 	public static int numDeFaixas = 100;
 	public static boolean programaAferido = false;
 
-	// Valores da Extração n° 04957 de 28/03/2015 da Loteria Federal
+	// Valores da ExtraÃ§Ã£o nÂ° 04957 de 28/03/2015 da Loteria Federal
 
 
 	private String afrPremio1 = "63.487";
@@ -51,7 +51,7 @@ public class Sorteio extends JFrame {
 	private String afrPremio5 = "76.226";
 	private String afrDataExtracao = "28/03/2015";
 	private String afrExtracao = "04957";
-	// Valores utilizados para aferição deste programa
+	// Valores utilizados para aferiÃ§Ã£o  deste programa
 	private String afrSorteio = "00001";
 	private String afrDataSorteio = "29/03/2015";
 	private String afrDataDiarioOficial = "30/03/2015";
@@ -127,7 +127,7 @@ public class Sorteio extends JFrame {
 				lblProgramaAferido.setText("");
 			}
 		});
-		setTitle("Sorteio de Bilhetes - Secretaria da Fazenda do Estado de Goiás");
+		setTitle("Sorteio de Bilhetes - Secretaria da Fazenda do Estado de GoiÃ¡s");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setMinimumSize(new Dimension(636, 594));
 		setLocationRelativeTo(null);
@@ -135,10 +135,10 @@ public class Sorteio extends JFrame {
 		JPanel panel_InfoLoteria = new JPanel();
 		panel_InfoLoteria.setBounds(28, 10, 265, 217);
 		panel_InfoLoteria.setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createTitledBorder("Informações da Loteria Federal"),
+				BorderFactory.createTitledBorder("InformaÃ§Ãµes da Loteria Federal"),
 				BorderFactory.createEmptyBorder(5,5,5,5)));
 
-		JLabel lblNewLabel = new JLabel("Extração n°:");
+		JLabel lblNewLabel = new JLabel("ExtraÃ§Ã£o nÂ°:");
 		lblNewLabel.setBounds(25, 20, 93, 20);
 		lblNewLabel.setForeground(new Color(0, 128, 0));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -162,7 +162,7 @@ public class Sorteio extends JFrame {
 		textDataExtracao.setBounds(120, 47, 99, 20);
 		textDataExtracao.setColumns(10);
 
-		JLabel lblPremio1 = new JLabel("1º Prêmio:");
+		JLabel lblPremio1 = new JLabel("1Âº PrÃªmio:");
 		lblPremio1.setBounds(22, 74, 96, 20);
 		lblPremio1.setForeground(new Color(0, 128, 0));
 		lblPremio1.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -174,7 +174,7 @@ public class Sorteio extends JFrame {
 		textPremio1.setBounds(120, 74, 99, 20);
 		textPremio1.setColumns(10);
 
-		JLabel lblPremio2 = new JLabel("2º Prêmio:");
+		JLabel lblPremio2 = new JLabel("2Âº PrÃªmio:");
 		lblPremio2.setBounds(22, 101, 96, 20);
 		lblPremio2.setForeground(new Color(0, 128, 0));
 		lblPremio2.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -186,7 +186,7 @@ public class Sorteio extends JFrame {
 		textPremio2.setBounds(120, 101, 99, 20);
 		textPremio2.setColumns(10);
 
-		JLabel lblPremio3 = new JLabel("3º Prêmio:");
+		JLabel lblPremio3 = new JLabel("3Âº PrÃªmio:");
 		lblPremio3.setBounds(22, 128, 96, 20);
 		lblPremio3.setForeground(new Color(0, 128, 0));
 		lblPremio3.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -198,7 +198,7 @@ public class Sorteio extends JFrame {
 		textPremio3.setBounds(120, 128, 99, 20);
 		textPremio3.setColumns(10);
 
-		JLabel lblPremio4 = new JLabel("4º Prêmio:");
+		JLabel lblPremio4 = new JLabel("4Âº PrÃªmio:");
 		lblPremio4.setBounds(22, 155, 96, 20);
 		lblPremio4.setForeground(new Color(0, 128, 0));
 		lblPremio4.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -210,7 +210,7 @@ public class Sorteio extends JFrame {
 		textPremio4.setBounds(120, 155, 99, 20);
 		textPremio4.setColumns(10);
 
-		JLabel lblPremio5 = new JLabel("5º Prêmio:");
+		JLabel lblPremio5 = new JLabel("5Âº PrÃªmio:");
 		lblPremio5.setBounds(22, 182, 96, 20);
 		lblPremio5.setForeground(new Color(0, 128, 0));
 		lblPremio5.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -260,12 +260,12 @@ public class Sorteio extends JFrame {
 		JPanel panel_Sorteio = new JPanel();
 		panel_Sorteio.setBounds(323, 10, 277, 217);
 
-		TitledBorder border = BorderFactory.createTitledBorder("Informações do Sorteio");
+		TitledBorder border = BorderFactory.createTitledBorder("InformaÃ§Ãµes do Sorteio");
 		panel_Sorteio.setBorder(BorderFactory.createCompoundBorder(
 				border,
 				BorderFactory.createEmptyBorder(5,5,5,5)));
 
-		JLabel lblNewLabel_2 = new JLabel("Sorteio n°:");
+		JLabel lblNewLabel_2 = new JLabel("Sorteio nÂ°:");
 		lblNewLabel_2.setBounds(78, 20, 72, 20);
 		lblNewLabel_2.setForeground(new Color(0, 128, 0));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -289,7 +289,7 @@ public class Sorteio extends JFrame {
 		textDataSorteio.setBounds(151, 90, 99, 20);
 		textDataSorteio.setColumns(10);
 
-		JLabel lblNewLabel_4 = new JLabel("Data no Diário Oficial:");
+		JLabel lblNewLabel_4 = new JLabel("Data no DiÃ¡rio Oficial:");
 		lblNewLabel_4.setBounds(10, 123, 140, 20);
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.RIGHT);
 
@@ -299,7 +299,7 @@ public class Sorteio extends JFrame {
 		textDataDiarioOficial.setBounds(151, 123, 99, 20);
 		textDataDiarioOficial.setColumns(10);
 
-		JLabel lblNewLabel_5 = new JLabel("número de Bilhetes:");
+		JLabel lblNewLabel_5 = new JLabel("nÃºmero de Bilhetes:");
 		lblNewLabel_5.setBounds(10, 156, 140, 20);
 		lblNewLabel_5.setHorizontalAlignment(SwingConstants.RIGHT);
 
@@ -307,7 +307,7 @@ public class Sorteio extends JFrame {
 		textTotalBilhetes.setBounds(151, 156, 99, 20);
 		textTotalBilhetes.setColumns(10);
 
-		JLabel lblNewLabel_6 = new JLabel("número de prêmios:");
+		JLabel lblNewLabel_6 = new JLabel("nÃºmero de prÃªmios:");
 		lblNewLabel_6.setBounds(10, 188, 140, 20);
 		lblNewLabel_6.setHorizontalAlignment(SwingConstants.RIGHT);
 
@@ -341,7 +341,7 @@ public class Sorteio extends JFrame {
 		lblErroTotalPremios.setFont(new Font("Tahoma", Font.BOLD, 11));
 
 		btnCancelar = new JButton("Encerrar");
-		btnCancelar.setToolTipText("Encerrar a execução do programa.");
+		btnCancelar.setToolTipText("Encerrar a execuÃ§Ã£o do programa.");
 		btnCancelar.setBounds(486, 522, 75, 26);
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -350,7 +350,7 @@ public class Sorteio extends JFrame {
 					inicializarCampos();
 					inicializarResultados();
 				} else {
-					// Programa está parado. Encerrar o programa.
+					// Programa estÃ¡ parado. Encerrar o programa.
 					frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
 				}
 			}
@@ -358,7 +358,7 @@ public class Sorteio extends JFrame {
 
 
 //		btnAbrir = new JButton("Abrir");
-//		btnSortear.setToolTipText("Abrir arquivo com resultados gerados pela execução.");
+//		btnSortear.setToolTipText("Abrir arquivo com resultados gerados pela execuÃ§Ã£o.");
 //		btnAbrir.setBounds(new Rectangle(60, 49, 166, 69));
 //		btnAbrir.setFont(new Font("Dialog", Font.BOLD, 24));
 //		btnAbrir.setText("Abrir");
@@ -376,7 +376,7 @@ public class Sorteio extends JFrame {
 		btnSortear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (EfetuarSorteio.isRunning()) {
-					JOptionPane.showMessageDialog(null, "O programa já está efetuando o sorteio. Aguarde!", "Sorteio", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "O programa jÃ¡ estÃ¡ efetuando o sorteio. Aguarde!", "Sorteio", JOptionPane.WARNING_MESSAGE);
 					return;
 				}
 				efetuarUmSorteio();
@@ -390,7 +390,7 @@ public class Sorteio extends JFrame {
 				BorderFactory.createTitledBorder("Resultados do Sorteio"),
 				BorderFactory.createEmptyBorder(5,5,5,5)));
 
-		JLabel lblTituloNumeroFaixas = new JLabel("número de Faixas de Bilhetes:");
+		JLabel lblTituloNumeroFaixas = new JLabel("nÃºmero de Faixas de Bilhetes:");
 		lblTituloNumeroFaixas.setBounds(60, 21, 201, 16);
 		lblTituloNumeroFaixas.setHorizontalAlignment(SwingConstants.RIGHT);
 
@@ -403,30 +403,30 @@ public class Sorteio extends JFrame {
 		panelBilhetesPorFaixa.setBounds(35, 48, 407, 144);
 
 		panelBilhetesPorFaixa.setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createTitledBorder("Estatísticas do número de prêmios Por Faixa de Bilhetes"),
+				BorderFactory.createTitledBorder("EstatÃ­sticas do nÃºmero de prÃªmios Por Faixa de Bilhetes"),
 				BorderFactory.createEmptyBorder(5,5,5,5)));
 
-		JLabel lblTituloValorEsperado = new JLabel("Valor Médio Teórico:");
+		JLabel lblTituloValorEsperado = new JLabel("Valor MÃ©dio TeÃ³rico:");
 		lblTituloValorEsperado.setBounds(25, 20, 201, 16);
 		lblTituloValorEsperado.setHorizontalAlignment(SwingConstants.RIGHT);
 
-		JLabel lblTituloValorMaximo = new JLabel("Valor Máximo Obtido:");
+		JLabel lblTituloValorMaximo = new JLabel("Valor MÃ¡ximo Obtido:");
 		lblTituloValorMaximo.setBounds(25, 40, 201, 16);
 		lblTituloValorMaximo.setHorizontalAlignment(SwingConstants.RIGHT);
 
-		JLabel lblTituloValorMinimo = new JLabel("Valor Mínimo Obtido:");
+		JLabel lblTituloValorMinimo = new JLabel("Valor MÃ­nimo Obtido:");
 		lblTituloValorMinimo.setBounds(25, 60, 201, 16);
 		lblTituloValorMinimo.setHorizontalAlignment(SwingConstants.RIGHT);
 
-		JLabel lblTituloDiferencaMaxMin = new JLabel("Diferença: Máximo - Mínimo:");
+		JLabel lblTituloDiferencaMaxMin = new JLabel("DiferenÃ§a: MÃ¡ximo - MÃ­nimo:");
 		lblTituloDiferencaMaxMin.setBounds(25, 80, 201, 16);
 		lblTituloDiferencaMaxMin.setHorizontalAlignment(SwingConstants.RIGHT);
 
-		JLabel lblTituloValorMedio = new JLabel("Valor Médio Obtido:");
+		JLabel lblTituloValorMedio = new JLabel("Valor MÃ©dio Obtido:");
 		lblTituloValorMedio.setBounds(25, 100, 201, 16);
 		lblTituloValorMedio.setHorizontalAlignment(SwingConstants.RIGHT);
 
-		JLabel lblTituloDesvioPadrao = new JLabel("Desvio Padrão:");
+		JLabel lblTituloDesvioPadrao = new JLabel("Desvio PadrÃ£o:");
 		lblTituloDesvioPadrao.setBounds(25, 120, 201, 16);
 		lblTituloDesvioPadrao.setHorizontalAlignment(SwingConstants.RIGHT);
 
@@ -460,7 +460,7 @@ public class Sorteio extends JFrame {
 		lblValorDesvioPadrao.setForeground(Color.BLUE);
 		lblValorDesvioPadrao.setHorizontalAlignment(SwingConstants.RIGHT);
 
-		JLabel lblTituloNumeroIteracoes = new JLabel("número de Iterações e de prêmios:");
+		JLabel lblTituloNumeroIteracoes = new JLabel("nÃºmero de IteraÃ§Ãµes e de prÃªmios:");
 		lblTituloNumeroIteracoes.setBounds(60, 200, 201, 16);
 		lblTituloNumeroIteracoes.setHorizontalAlignment(SwingConstants.RIGHT);
 
@@ -492,7 +492,7 @@ public class Sorteio extends JFrame {
 		lblValorTempoTranscorrido.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblValorTempoTranscorrido.setForeground(Color.BLUE);
 
-		JLabel lblTituloPremiosPorSegundo = new JLabel("Iterações / segundo:");
+		JLabel lblTituloPremiosPorSegundo = new JLabel("IteraÃ§Ãµes / segundo:");
 		lblTituloPremiosPorSegundo.setBounds(60, 240, 201, 16);
 		lblTituloPremiosPorSegundo.setHorizontalAlignment(SwingConstants.RIGHT);
 
@@ -511,11 +511,11 @@ public class Sorteio extends JFrame {
 
 		btnAferir = new JButton("Aferir");
 		btnAferir.setBounds(72, 522, 75, 26);
-		btnAferir.setToolTipText("Efetuar a aferição do funcionamento do programa.");
+		btnAferir.setToolTipText("Efetuar a aferiÃ§Ã£o do funcionamento do programa.");
 		btnAferir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (EfetuarSorteio.isRunning()) {
-					JOptionPane.showMessageDialog(null, "O programa já está efetuando a aferição. Aguarde!", "aferição do Programa", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "O programa jÃ¡ estÃ¡ efetuando a aferiÃ§Ã£o. Aguarde!", "aferiÃ§Ã£o do Programa", JOptionPane.WARNING_MESSAGE);
 					return;
 				}
 				programaAferido = true;
@@ -593,7 +593,7 @@ public class Sorteio extends JFrame {
 
 		lblArquivoImportacaoExtracoes = new JLabel("FulanoDeTalPasso [linha 1 de 10]");
 		lblArquivoImportacaoExtracoes.setForeground(Color.BLUE);
-		lblArquivoImportacaoExtracoes.setToolTipText("Nome do arquivo de importação das extrações.");
+		lblArquivoImportacaoExtracoes.setToolTipText("Nome do arquivo de importaÃ§Ã£o das extraÃ§Ãµes.");
 		lblArquivoImportacaoExtracoes.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblArquivoImportacaoExtracoes.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lblArquivoImportacaoExtracoes.setBounds(10, 70, 240, 14);
@@ -634,25 +634,25 @@ public class Sorteio extends JFrame {
 		getContentPane().add(btnCancelar);
 		getContentPane().add(lblProgramaAferido);
 
-		JLabel lblVersao = new JLabel("Versão do Programa: " + versao);
-		lblVersao.setToolTipText("Clique aqui para obter mais Informações.");
+		JLabel lblVersao = new JLabel("VersÃ£o do Programa: " + versao);
+		lblVersao.setToolTipText("Clique aqui para obter mais InformaÃ§Ãµes.");
 		lblVersao.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				JOptionPane.showMessageDialog(null, "Versão do Programa de Sorteio: " + versao + "\r\n\r\n" +
+				JOptionPane.showMessageDialog(null, "VersÃ£o do Programa de Sorteio: " + versao + "\r\n\r\n" +
 						"MÃ¡quina Virtual JAVA\r\n" +
-						"Versão: " + System.getProperty("java.version") + " - " +
+						"VersÃ£o: " + System.getProperty("java.version") + " - " +
 						System.getProperty("java.vendor") + "\r\n" +
 						"Local: " + System.getProperty("java.home") + "\r\n" +
 						"MemÃ³ria Ocupada: " + Runtime.getRuntime().totalMemory() / (1024 * 1024) + " Mbytes\r\n" +
 						"MemÃ³ria MÃ¡xima:  " + Runtime.getRuntime().maxMemory() / (1024 * 1024) + " Mbytes\r\n\r\n" +
 						"Sistema Operacional: " + System.getProperty("os.name") + "\r\n" +
-						"Arquitetura: " + System.getProperty("os.arch") + "\r\nVersão: " +
+						"Arquitetura: " + System.getProperty("os.arch") + "\r\nVersÃ£o: " +
 						System.getProperty("os.version") + "\r\n\r\n" +// "\r\n\r\n"+
-						"Este programa é uma adaptaÃ§Ã£o do Programa de " + "\r\n" +
+						"Este programa Ã© uma adaptaÃ§Ã£o do Programa de " + "\r\n" +
 						"Sorteios de Bilhetes utilizado e disponibilizado " + "\r\n" +
 						"publicamente pela Secretaria da Fazenda do Estado " + "\r\n" +
-						"do Rio Grande do Sul." + "\r\n", "Informações Sobre o Programa", JOptionPane.INFORMATION_MESSAGE);
+						"do Rio Grande do Sul." + "\r\n", "InformaÃ§Ãµes Sobre o Programa", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		lblVersao.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -661,7 +661,7 @@ public class Sorteio extends JFrame {
 
 		chckbxUmaLinha = new JCheckBox("Uma linha");
 		chckbxUmaLinha.setSelected(true);
-		chckbxUmaLinha.setToolTipText("Executar uma linha do arquivo de importação de extrações.");
+		chckbxUmaLinha.setToolTipText("Executar uma linha do arquivo de importaÃ§Ã£o de extraÃ§Ãµes.");
 		chckbxUmaLinha.setBounds(319, 524, 75, 23);
 		chckbxUmaLinha.setVisible(false);
 		getContentPane().add(chckbxUmaLinha);
@@ -682,10 +682,10 @@ public class Sorteio extends JFrame {
 //			if ((TipoExtracao.TipoExtracaoEscolhida != TipoExtracao.ValoresTipoExtracao.IMPORTADA) || (ProximaExtracao == 0)) {
 			if ((proximaExtracao == 0)) {
 				JFileChooser fc = new JFileChooser();
-				FileFilter ff = fc.getFileFilter();		// Salvando o filtro Padrão.
+				FileFilter ff = fc.getFileFilter();		// Salvando o filtro PadrÃ£o.
 				fc.setAcceptAllFileFilterUsed(false);	// Apagando todos os filtros.
 				fc.addChoosableFileFilter(new TextFileFilter());	// Adicionando o filtro para arquivos de extensÃ£o txt.
-				fc.addChoosableFileFilter(ff);			// Adicionando o filtro Padrão.
+				fc.addChoosableFileFilter(ff);			// Adicionando o filtro PadrÃ£o.
 
 				// Gerar o nome do arquivo.
 				String codigo;
@@ -702,7 +702,7 @@ public class Sorteio extends JFrame {
 				}
 				nomeArquivoSaida = fc.getSelectedFile().getAbsolutePath();
 				if (!nomeArquivoSaida.substring(nomeArquivoSaida.length() - 4).toLowerCase().contains("." + extensao)) {
-					// O nome do arquivo não contém a extensÃ£o correta.
+					// O nome do arquivo nÃ£o contÃ©m a extensÃ£o correta.
 					nomeArquivoSaida += "." + extensao;	// Colocar a extensÃ£o no nome do arquivo.
 				}
 				arquivosTxt.clear();
@@ -839,13 +839,13 @@ public class Sorteio extends JFrame {
 			lblErroTotalBilhetes.setVisible(true);
 			lblErroTotalPremios.setVisible(true);
 			erroEncontrado = true;
-			JOptionPane.showMessageDialog(null, "O número de bilhetes deve ser superior ao número de prêmios!\r\nCorrija estes campos.", "Sorteio", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "O nÃºmero de bilhetes deve ser superior ao nÃºmero de prÃªmios!\r\nCorrija estes campos.", "Sorteio", JOptionPane.WARNING_MESSAGE);
 		} else if (!erroEncontrado && !programaAferido && (Integer.parseInt(textSorteioNumero.getText()) == 0)) {
 			lblErroSorteioNumero.setVisible(true);
 			erroEncontrado = true;
-			JOptionPane.showMessageDialog(null, "O número do sorteio não pode ser zero!\r\nCorrija este campo.", "Sorteio", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "O nÃºmero do sorteio nÃ£o pode ser zero!\r\nCorrija este campo.", "Sorteio", JOptionPane.WARNING_MESSAGE);
 		} else if (erroEncontrado) {
-			JOptionPane.showMessageDialog(null, "Prencher corretamente os campos assinalados com asterísco vermelho!", "Sorteio", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Prencher corretamente os campos assinalados com asterÃ­sco vermelho!", "Sorteio", JOptionPane.WARNING_MESSAGE);
 		}
 		return erroEncontrado;
 	}
@@ -887,8 +887,8 @@ public class Sorteio extends JFrame {
 			if (EfetuarSorteio.msgDeErro.length() > 0) {
 				String msg, titulo;
 				if (programaAferido) {
-					msg = "da aferição: ";
-					titulo = "Executando a aferição do Programa";
+					msg = "da aferiÃ§Ã£o: ";
+					titulo = "Executando a aferiÃ§Ã£o do Programa";
 				} else {
 					msg = "do sorteio: ";
 					titulo = "Executando o Sorteio";
@@ -896,14 +896,14 @@ public class Sorteio extends JFrame {
 				if (EfetuarSorteio.msgDeErro.contains("cancelada"))
 					JOptionPane.showMessageDialog(null, EfetuarSorteio.msgDeErro, titulo, JOptionPane.WARNING_MESSAGE);
 				else
-					JOptionPane.showMessageDialog(null, "Falhou a execução " + msg + EfetuarSorteio.msgDeErro, titulo, JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Falhou a execuÃ§Ã£o " + msg + EfetuarSorteio.msgDeErro, titulo, JOptionPane.ERROR_MESSAGE);
 				if (EfetuarSorteio.nomeSorteio.equals("Aferir")) {
 					if (EfetuarSorteio.msgDeErro.contains("cancelada")) {
 						lblProgramaAferido.setForeground(Color.RED);
-						lblProgramaAferido.setText("Cancelada a aferição!");
+						lblProgramaAferido.setText("Cancelada a aferiÃ§Ã£o!");
 					} else {
 						lblProgramaAferido.setForeground(Color.RED);
-						lblProgramaAferido.setText("Programa com erro na aferição!");
+						lblProgramaAferido.setText("Programa com erro na aferiÃ§Ã£o!");
 					}
 				}
 			} else {
@@ -934,10 +934,10 @@ public class Sorteio extends JFrame {
 		btnApagar.setEnabled(Sim);
 		if (Sim) {
 			btnCancelar.setText("Encerrar");
-			btnCancelar.setToolTipText("Encerrar a execução do programa.");
+			btnCancelar.setToolTipText("Encerrar a execuÃ§Ã£o do programa.");
 		} else {
 			btnCancelar.setText("Parar");
-			btnCancelar.setToolTipText("Parar a execução do programa.");
+			btnCancelar.setToolTipText("Parar a execuÃ§Ã£o do programa.");
 		}
 		if (programaAferido) {
 			// Aferindo programa.
@@ -968,7 +968,7 @@ public class Sorteio extends JFrame {
 	}
 
 	protected void inicializarCampos() {
-		// Limpar os campos de entrada de Informações
+		// Limpar os campos de entrada de InformaÃ§Ãµes
 		textExtracao.setText("");
 		lblErroExtracao.setVisible(false);
 		textDataExtracao.setValue(null);

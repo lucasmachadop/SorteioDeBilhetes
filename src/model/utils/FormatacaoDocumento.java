@@ -9,9 +9,9 @@ import gui.Sorteio;
 public class FormatacaoDocumento {
 	public static NumberFormat mf = NumberFormat.getInstance(Locale.GERMAN);
 	public static String montaCabecalhoArquivo(){
-		String cabecalho =  "Secretaria da Fazenda do Estado de Goi�s\r\n"
+		String cabecalho =  "Secretaria da Fazenda do Estado de Goiás\r\n"
 				+ "====================================================\r\n\r\n"
-				+ "Vers�o do Programa: "
+				+ "Versão do Programa: "
 				+ Sorteio.versao
 				+ "\r\n\r\n"
 				+ "Sorteio de Bilhetes\r\n"
@@ -41,14 +41,14 @@ public class FormatacaoDocumento {
 				+ "\r\n";
 
 		cabecalho += "Data do Sorteio:         " + EfetuarSorteio.dataSorteio + "\r\n"
-				+ "Data no Di�rio Oficial:  " + EfetuarSorteio.dataDiarioOficial + "\r\n";
-		cabecalho += String.format("N�mero de Bilhetes:     %11s\r\n",
+				+ "Data no Diário Oficial:  " + EfetuarSorteio.dataDiarioOficial + "\r\n";
+		cabecalho += String.format("Número de Bilhetes:     %11s\r\n",
 				EfetuarSorteio.totalDeBilhetes);
-		cabecalho += String.format("N�mero de Premios:      %11s\r\n",
+		cabecalho += String.format("Número de Premios:      %11s\r\n",
 				EfetuarSorteio.totalDePremios);
-		cabecalho += "\r\nRela��o dos Bilhetes Premiados:\r\n"
+		cabecalho += "\r\nRelação dos Bilhetes Premiados:\r\n"
 				+ "-------------------------------\r\n"
-				+ "  Itera��o      Premio     Bilhete  Observa��o\r\n"
+				+ "  Iteração      Premio     Bilhete  Observação\r\n"
 				+ "==========  ==========  ==========  =====================================\r\n";
 		return cabecalho;
 		}
@@ -63,36 +63,36 @@ public class FormatacaoDocumento {
 	
 	public static String montaCabecalhoFaixas(){
 		
-		String Resultado = "\r\nAVALIA��O DO SORTEIO\r\n"
-				+ "====================\r\n" + "N�mero de Faixas de Bilhetes: "
+		String Resultado = "\r\nAVALIAÇÃO DO SORTEIO\r\n"
+				+ "====================\r\n" + "Número de Faixas de Bilhetes: "
 				+ EfetuarSorteio.numDeFaixas + "\r\n";
 
-		// Obter os valores M�ximo e M�nimo de Pr�mios por faixa de valores de
+		// Obter os valores Máximo e Mínimo de Prêmios por faixa de valores de
 		// bilhetes.
-		Resultado += "\r\nRela��o das Faixas de Bilhetes:\r\n"
+		Resultado += "\r\nRelação das Faixas de Bilhetes:\r\n"
 				+ "-------------------------------\r\n"
-				+ "     Faixa  Bilhete Inicial  Bilhete Final  Pr�mios na Faixa\r\n"
+				+ "     Faixa  Bilhete Inicial  Bilhete Final  Prêmios na Faixa\r\n"
 				+ "==========  ===============  =============  ================\r\n";
 		return Resultado;
 	}
 	
 	public static String montaEstatisticas(){
-	 String Resultado = "\r\nEstatisticas do N�mero de Pr�mios Por Faixa de Bilhetes\r\n"
+	 String Resultado = "\r\nEstatisticas do Número de Prêmios Por Faixa de Bilhetes\r\n"
 			+ "=======================================================\r\n";
-	Resultado += String.format("     Valor M�dio Calculado:      %10s\r\n",
+	Resultado += String.format("     Valor Médio Calculado:      %10s\r\n",
 			EfetuarSorteio.valorEsperado);
-	Resultado += String.format("     Valor M�ximo Obtido:        %10s\r\n",
+	Resultado += String.format("     Valor Máximo Obtido:        %10s\r\n",
 			EfetuarSorteio.valorMaximo);
-	Resultado += String.format("     Valor M�nimo Obtido:        %10s\r\n",
+	Resultado += String.format("     Valor Mínimo Obtido:        %10s\r\n",
 			EfetuarSorteio.valorMinimo);
 	Resultado += String.format(
-			"     Diferen�as: M�ximo - M�nimo: %10s\r\n",
+			"     Diferenças: Máximo - Mínimo: %10s\r\n",
 			EfetuarSorteio.diferencaValoresMaxMin);
-	Resultado += String.format("     Valor M�dio Obtido:         %10s\r\n",
+	Resultado += String.format("     Valor Médio Obtido:         %10s\r\n",
 			EfetuarSorteio.valorMedio);
-	Resultado += String.format("     Desvio Padr�o:              %10s\r\n",
+	Resultado += String.format("     Desvio Padrão:              %10s\r\n",
 			EfetuarSorteio.valorDesvioPadrao);
-	Resultado += String.format("     N�mero de Itera��es:        %10s\r\n",
+	Resultado += String.format("     Número de Iterações:        %10s\r\n",
 			FormatacaoDocumento.mf.format(EfetuarSorteio.vezes - 1));
 	Resultado += "-----------------------------------------------------------------\r\n";
 	return Resultado;

@@ -69,9 +69,9 @@ public class testesEfetuarSorteio {
 	
 	@Test
 	public void testaGeraSemente(){
-		String str = "bozoopalha�odosatan�s,voc�vemsempreaqui?";
+		String str = "bozoopalhaçodosatanás,vocêvemsempreaqui?";
 		
-		assertEquals(str,tmp.geraSemente("bozo", "o", "palha�o", "do", "satan�s", ",voc�", "vem", "sempre", "aqui?"));
+		assertEquals(str,tmp.geraSemente("bozo", "o", "palhaço", "do", "satanás", ",você", "vem", "sempre", "aqui?"));
 	
 	}
 	

@@ -62,7 +62,7 @@ public class EscreveESalvaSorteio {
 		try {
 			Output = new BufferedWriter(new FileWriter(NomeArquivoMD5));
 		} catch (IOException e1) {
-			EfetuarSorteio.msgDeErro = "N�o conseguiu criar " + NomeArquivoMD5
+			EfetuarSorteio.msgDeErro = "Não conseguiu criar " + NomeArquivoMD5
 					+ ". Deu erro: " + e1.getMessage();
 			EfetuarSorteio.emExecucao = false;
 			return false;
@@ -72,12 +72,12 @@ public class EscreveESalvaSorteio {
 		try {
 			Output.append(Resultado.toLowerCase());
 		} catch (IOException e1) {
-			EfetuarSorteio.msgDeErro = "N�o conseguiu gravar em " + NomeArquivoMD5
+			EfetuarSorteio.msgDeErro = "Não conseguiu gravar em " + NomeArquivoMD5
 					+ ". Deu erro: " + e1.getMessage();
 			try {
 				Output.close();
 			} catch (IOException e) {
-				EfetuarSorteio.msgDeErro = "N�o conseguiu fechar " + NomeArquivoMD5
+				EfetuarSorteio.msgDeErro = "Não conseguiu fechar " + NomeArquivoMD5
 						+ ". Deu erro: " + e1.getMessage();
 				EfetuarSorteio.emExecucao = false;
 				e.printStackTrace();
@@ -88,7 +88,7 @@ public class EscreveESalvaSorteio {
 		try {
 			Output.close();
 		} catch (IOException e1) {
-			EfetuarSorteio.msgDeErro = "N�o conseguiu fechar " + NomeArquivoMD5
+			EfetuarSorteio.msgDeErro = "Não conseguiu fechar " + NomeArquivoMD5
 					+ ". Deu erro: " + e1.getMessage();
 			EfetuarSorteio.emExecucao = false;
 			return false ;
